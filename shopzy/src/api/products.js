@@ -1,9 +1,8 @@
-export async function fetchProducts() {
-  const response = await fetch('/api/products')
-
+export async function fetchProducts(category) {
+  const query = category ? `?category=${encodeURIComponent(category)}` : "";
+  const response = await fetch(`/api/products${query}`);
   if (!response.ok) {
-    throw new Error(`Failed to fetch products: ${response.status}`)
+    throw new Error(`Failed to fetch products: ${response.status}`);
   }
-
-  return response.json()
+  return response.json();
 }

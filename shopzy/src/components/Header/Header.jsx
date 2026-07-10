@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 const NAV_ITEMS = [
-  { label: 'Women', href: '#women' },
-  { label: 'Men', href: '#men' },
-  { label: 'Electronics', href: '#electronics' },
+  { label: 'Women', to: '/women' },
+  { label: 'Men', to: '/men' },
+  { label: 'Electronics', to: '/electronics' },
 ]
 
 function Header() {
@@ -15,9 +16,9 @@ function Header() {
   return (
     <header className="header">
       <div className="header__bar">
-        <a href="/" className="header__logo" onClick={closeMenu}>
+        <Link to="/" className="header__logo" onClick={closeMenu}>
           Shopzy
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -37,11 +38,11 @@ function Header() {
         aria-label="Main navigation"
       >
         <ul className="header__nav-list">
-          {NAV_ITEMS.map(({ label, href }) => (
+          {NAV_ITEMS.map(({ label, to }) => (
             <li key={label}>
-              <a href={href} className="header__nav-link" onClick={closeMenu}>
+              <Link to={to} className="header__nav-link" onClick={closeMenu}>
                 {label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

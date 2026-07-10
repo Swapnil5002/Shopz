@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
 import HomePage, { PRODUCT_STATUS } from "./pages/HomePage";
+import CategoryPage from "./pages/CategoryPage";
 import { fetchProducts } from "./api/products";
 import "./App.css";
 
-function App() {
+function Home() {
   const [products, setProducts] = useState([]);
   const [productsStatus, setProductsStatus] = useState(PRODUCT_STATUS.LOADING);
 
@@ -22,6 +23,7 @@ function App() {
         );
       })
       .catch(() => {
+        if (!active) return;
         setProductsStatus(PRODUCT_STATUS.ERROR);
       });
 
@@ -30,14 +32,17 @@ function App() {
     };
   }, []);
 
+  return <HomePage products={products} productsStatus={productsStatus} />;
+}
+
+function App() {
   return (
-    <>
-      <Header />
-      <main className="main">
-        <HomePage products={products} productsStatus={productsStatus} />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path=":category" element={<CategoryPage />} />
+      </Route>
+    </Routes>
   );
 }
 

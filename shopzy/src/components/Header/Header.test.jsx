@@ -1,20 +1,29 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import Header from './Header'
 
+function renderHeader() {
+  return render(
+    <MemoryRouter>
+      <Header />
+    </MemoryRouter>,
+  )
+}
+
 describe('Header', () => {
   it('renders logo and navigation links', () => {
-    render(<Header />)
+    renderHeader()
 
     expect(screen.getByRole('link', { name: 'Shopzy' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Women' })).toHaveAttribute('href', '#women')
-    expect(screen.getByRole('link', { name: 'Men' })).toHaveAttribute('href', '#men')
-    expect(screen.getByRole('link', { name: 'Electronics' })).toHaveAttribute('href', '#electronics')
+    expect(screen.getByRole('link', { name: 'Women' })).toHaveAttribute('href', '/women')
+    expect(screen.getByRole('link', { name: 'Men' })).toHaveAttribute('href', '/men')
+    expect(screen.getByRole('link', { name: 'Electronics' })).toHaveAttribute('href', '/electronics')
   })
 
   it('starts with the mobile menu closed', () => {
-    render(<Header />)
+    renderHeader()
 
     expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute('aria-expanded', 'false')
     expect(screen.getByRole('navigation', { name: 'Main navigation' })).not.toHaveClass('header__nav--open')
@@ -22,7 +31,7 @@ describe('Header', () => {
 
   it('opens and closes the mobile menu', async () => {
     const user = userEvent.setup()
-    render(<Header />)
+    renderHeader()
 
     await user.click(screen.getByRole('button', { name: 'Open menu' }))
 
@@ -36,7 +45,7 @@ describe('Header', () => {
 
   it('closes the menu when a nav link is clicked', async () => {
     const user = userEvent.setup()
-    render(<Header />)
+    renderHeader()
 
     await user.click(screen.getByRole('button', { name: 'Open menu' }))
     await user.click(screen.getByRole('link', { name: 'Women' }))
