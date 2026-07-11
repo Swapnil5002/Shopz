@@ -11,8 +11,18 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 32px;
+  gap: 48px;
   padding: 40px 32px 32px;
+}
+
+.footer__brand {
+  max-width: 320px;
+}
+
+.footer__columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
 }
 
 .footer__logo {
@@ -34,6 +44,33 @@
   font-size: 15px;
   color: var(--text);
   max-width: 280px;
+  line-height: 1.5;
+}
+
+.footer__social {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer__social-link {
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__social-link:hover {
+  color: var(--accent);
+}
+
+.footer__social-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .footer__nav-title {
@@ -75,6 +112,11 @@
 }
 
 .footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   padding: 16px 32px;
   border-top: 1px solid var(--border);
 }
@@ -83,6 +125,23 @@
   margin: 0;
   font-size: 14px;
   color: var(--text);
+}
+
+.footer__contact {
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__contact:hover {
+  color: var(--accent);
+}
+
+.footer__contact:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 @media (max-width: 768px) {
@@ -96,8 +155,22 @@
     padding-right: max(20px, env(safe-area-inset-right));
   }
 
+  .footer__brand {
+    max-width: none;
+  }
+
   .footer__tagline {
     max-width: none;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+
+  .footer__columns {
+    width: 100%;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .footer__nav {
@@ -117,6 +190,7 @@
   }
 
   .footer__bottom {
+    justify-content: center;
     padding: 16px 20px;
     padding-left: max(20px, env(safe-area-inset-left));
     padding-right: max(20px, env(safe-area-inset-right));
