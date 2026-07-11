@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard/ProductCard'
 import { loadProducts } from '../store/productsSlice'
+import { addToCart } from '../store/cartSlice'
 import { PRODUCT_STATUS } from './HomePage'
 import './CategoryPage.css'
 
@@ -65,7 +66,11 @@ function CategoryPage() {
         {status === PRODUCT_STATUS.IDLE && (
           <div className="category__products">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={(item) => dispatch(addToCart(item))}
+              />
             ))}
           </div>
         )}

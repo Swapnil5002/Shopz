@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store/authSlice'
+import { selectCartCount } from '../../store/cartSlice'
 import './Header.css'
 
 const NAV_ITEMS = [
@@ -15,6 +16,7 @@ function Header() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector((state) => state.auth.user)
+  const cartCount = useSelector(selectCartCount)
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -87,6 +89,40 @@ function Header() {
         </ul>
 
         <ul className="header__nav-list header__nav-list--auth">
+          <li>
+            <Link
+              to="/cart"
+              className="header__cart"
+              onClick={closeMenu}
+              aria-label={`Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}`}
+            >
+              <svg
+                className="header__cart-icon"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M3 4h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="10" cy="20" r="1.4" fill="currentColor" />
+                <circle cx="17" cy="20" r="1.4" fill="currentColor" />
+              </svg>
+              <span className="header__cart-label">Cart</span>
+              {cartCount > 0 && (
+                <span className="header__cart-count" aria-hidden="true">
+                  {cartCount > 99 ? '99+' : cartCount}
+                </span>
+              )}
+            </Link>
+          </li>
           {user ? (
             <>
               <li>

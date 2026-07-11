@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { fetchProductById } from '../api/products'
+import { addToCart } from '../store/cartSlice'
 import './ProductDetailPage.css'
 
 const STATUS = {
@@ -65,17 +67,21 @@ function Stars({ rating }) {
 
 function ProductDetailPage() {
   const { id } = useParams()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [product, setProduct] = useState(null)
   const [status, setStatus] = useState(STATUS.LOADING)
   const [quantity, setQuantity] = useState(1)
   const [selectedColor, setSelectedColor] = useState('')
   const [selectedSize, setSelectedSize] = useState('')
   const [activeImage, setActiveImage] = useState(0)
+  const [justAdded, setJustAdded] = useState(false)
 
   useEffect(() => {
     let active = true
 
     setStatus(STATUS.LOADING)
+    setJustAdded(false)
     fetchProductById(id)
       .then((data) => {
         if (!active) return
@@ -99,6 +105,12 @@ function ProductDetailPage() {
       active = false
     }
   }, [id])
+
+  useEffect(() => {
+    if (!justAdded) return undefined
+    const timer = setTimeout(() => setJustAdded(false), 2500)
+    return () => clearTimeout(timer)
+  }, [justAdded])
 
   if (status === STATUS.LOADING) {
     return (
@@ -164,6 +176,16 @@ function ProductDetailPage() {
   const gallery = buildGallery(bg)
   const deliveryDate = formatDeliveryDate(4)
   const categoryPath = `/${category.toLowerCase()}`
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ id, name, price, bg, category, quantity }))
+    setJustAdded(true)
+  }
+
+  const handleBuyNow = () => {
+    dispatch(addToCart({ id, name, price, bg, category, quantity }))
+    navigate('/cart')
+  }
 
   return (
     <div className="pdp">
@@ -326,12 +348,28 @@ function ProductDetailPage() {
             </select>
           </label>
 
-          <button type="button" className="pdp__add-btn" disabled={!inStock}>
+          <button
+            type="button"
+            className="pdp__add-btn"
+            disabled={!inStock}
+            onClick={handleAddToCart}
+          >
             Add to Cart
           </button>
-          <button type="button" className="pdp__buy-btn" disabled={!inStock}>
+          <button
+            type="button"
+            className="pdp__buy-btn"
+            disabled={!inStock}
+            onClick={handleBuyNow}
+          >
             Buy Now
           </button>
+
+          {justAdded && (
+            <p className="pdp__added" role="status">
+              ✓ Added to cart · <Link to="/cart">View cart</Link>
+            </p>
+          )}
 
           <ul className="pdp__assurance">
             <li>

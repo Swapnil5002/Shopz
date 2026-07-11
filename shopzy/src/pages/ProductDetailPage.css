@@ -354,6 +354,25 @@
   cursor: not-allowed;
 }
 
+.pdp__added {
+  margin: 0.25rem 0 0;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.85rem;
+  color: var(--commerce-instock);
+  background: var(--commerce-surface-alt);
+  border-radius: 8px;
+}
+
+.pdp__added a {
+  color: var(--commerce-link);
+  text-decoration: none;
+}
+
+.pdp__added a:hover {
+  color: var(--commerce-link-hover);
+  text-decoration: underline;
+}
+
 .pdp__assurance {
   list-style: none;
   margin: 0.75rem 0 0;
