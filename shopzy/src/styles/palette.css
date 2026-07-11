@@ -1,0 +1,153 @@
+:root {
+  --purple-400: #c084fc;
+  --purple-500: #aa3bff;
+  --purple-600: #9333ea;
+  --white: #ffffff;
+  --black: #08060d;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --ink-900: #16171d;
+  --ink-800: #1f2028;
+  --ink-700: #2e303a;
+  --ink-text: #9ca3af;
+  --ink-text-strong: #f3f4f6;
+  --red-600: #b91c1c;
+  --red-200: #fecaca;
+  --red-50: #fef2f2;
+  --green-700: #047857;
+  --green-200: #a7f3d0;
+  --green-50: #ecfdf5;
+  --amber-500: #f59e0b;
+  --commerce-ink: #0f1111;
+  --commerce-muted: #565959;
+  --commerce-line: #e7e7e7;
+  --commerce-border: #d5d9d9;
+  --commerce-surface-alt: #f7f8f8;
+  --commerce-field: #f0f2f2;
+  --commerce-link: #007185;
+  --commerce-link-hover: #c7511f;
+  --commerce-deal: #cc0c39;
+  --commerce-instock: #007600;
+  --commerce-out: #b12704;
+  --commerce-star: #de7921;
+  --commerce-add: #ffd814;
+  --commerce-add-hover: #f7ca00;
+  --commerce-add-border: #fcd200;
+  --commerce-buy: #ffa41c;
+  --commerce-buy-hover: #fa8900;
+  --commerce-buy-border: #ff8f00;
+  --commerce-thumb-active: #e77600;
+  --color-bg: var(--white);
+  --color-surface: var(--white);
+  --color-surface-muted: var(--gray-50);
+  --color-code-bg: #f4f3ec;
+  --color-social-bg: rgba(244, 243, 236, 0.5);
+
+  --color-text: #6b6375;
+  --color-text-strong: var(--black);
+  --color-text-muted: var(--gray-500);
+  --color-text-subtle: var(--gray-600);
+  --color-on-brand: var(--white);
+
+  --color-border: #e5e4e7;
+  --color-border-muted: var(--gray-200);
+  --color-border-strong: var(--gray-300);
+
+  --color-brand: var(--purple-500);
+  --color-brand-strong: var(--purple-600);
+  --color-brand-soft: rgba(170, 59, 255, 0.1);
+  --color-brand-border: rgba(170, 59, 255, 0.5);
+  --color-focus-ring: rgba(170, 59, 255, 0.35);
+
+  --color-star: var(--amber-500);
+
+  --color-danger: var(--red-600);
+  --color-danger-bg: var(--red-50);
+  --color-danger-border: var(--red-200);
+  --color-success: var(--green-700);
+  --color-success-bg: var(--green-50);
+  --color-success-border: var(--green-200);
+
+  --shadow-md:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.06);
+
+  --font-sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-2xl: 32px;
+  --fs-3xl: 40px;
+  --fs-4xl: 56px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.3;
+  --lh-base: 1.45;
+  --lh-relaxed: 1.6;
+
+  --ls-tight: -0.03em;
+  --ls-normal: 0.18px;
+  --ls-wide: 0.08em;
+  --bg: var(--color-bg);
+  --text: var(--color-text);
+  --text-h: var(--color-text-strong);
+  --border: var(--color-border);
+  --code-bg: var(--color-code-bg);
+  --accent: var(--color-brand);
+  --accent-bg: var(--color-brand-soft);
+  --accent-border: var(--color-brand-border);
+  --social-bg: var(--color-social-bg);
+  --shadow: var(--shadow-md);
+  --sans: var(--font-sans);
+  --heading: var(--font-heading);
+  --mono: var(--font-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--ink-900);
+    --color-surface: var(--ink-900);
+    --color-surface-muted: var(--ink-800);
+    --color-code-bg: var(--ink-800);
+    --color-social-bg: rgba(47, 48, 58, 0.5);
+
+    --color-text: var(--ink-text);
+    --color-text-strong: var(--ink-text-strong);
+    --color-text-muted: var(--gray-400);
+    --color-text-subtle: var(--gray-400);
+
+    --color-border: var(--ink-700);
+    --color-border-muted: var(--ink-700);
+    --color-border-strong: var(--ink-700);
+
+    --color-brand: var(--purple-400);
+    --color-brand-strong: var(--purple-400);
+    --color-brand-soft: rgba(192, 132, 252, 0.15);
+    --color-brand-border: rgba(192, 132, 252, 0.5);
+    --color-focus-ring: rgba(192, 132, 252, 0.4);
+
+    --shadow-md:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+}

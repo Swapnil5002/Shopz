@@ -28,7 +28,35 @@ function Header() {
     <header className="header">
       <div className="header__bar">
         <Link to="/" className="header__logo" onClick={closeMenu}>
-          Shopzy
+          <svg
+            className="header__logo-icon"
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19L6 8Z"
+              fill="currentColor"
+              opacity="0.15"
+            />
+            <path
+              d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19L6 8Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 9V7a3 3 0 0 1 6 0v2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span className="header__logo-text">Shopzy</span>
         </Link>
 
         <button

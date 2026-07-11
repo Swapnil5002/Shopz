@@ -9,7 +9,19 @@
       "rating": 4.8,
       "reviews": 124,
       "badge": "Sale",
-      "bg": "linear-gradient(160deg, #fce7f3 0%, #f9a8d4 100%)"
+      "bg": "linear-gradient(160deg, #fce7f3 0%, #f9a8d4 100%)",
+      "brand": "Aurelle",
+      "description": "A fluid silk-blend wrap dress with an adjustable tie waist and a flattering V-neckline. Effortlessly elegant from brunch to evening.",
+      "material": "70% Silk, 30% Viscose",
+      "colors": ["Blush", "Ivory", "Black"],
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "stock": 12,
+      "highlights": [
+        "Adjustable tie waist",
+        "Breathable silk blend",
+        "Fully lined",
+        "Machine washable on delicate"
+      ]
     },
     {
       "id": "2",
@@ -19,7 +31,19 @@
       "rating": 4.6,
       "reviews": 89,
       "badge": "New",
-      "bg": "linear-gradient(160deg, #fff1f2 0%, #fecdd3 100%)"
+      "bg": "linear-gradient(160deg, #fff1f2 0%, #fecdd3 100%)",
+      "brand": "Aurelle",
+      "description": "A relaxed-fit linen blazer with a soft shoulder and single-button closure — effortless layering for warm days.",
+      "material": "100% European Linen",
+      "colors": ["Sand", "Sage", "White"],
+      "sizes": ["XS", "S", "M", "L"],
+      "stock": 8,
+      "highlights": [
+        "Breathable pure linen",
+        "Relaxed tailored fit",
+        "Functional front pockets",
+        "Unlined for warm weather"
+      ]
     },
     {
       "id": "3",
@@ -28,7 +52,19 @@
       "price": 54,
       "rating": 4.7,
       "reviews": 203,
-      "bg": "linear-gradient(160deg, #dbeafe 0%, #93c5fd 100%)"
+      "bg": "linear-gradient(160deg, #dbeafe 0%, #93c5fd 100%)",
+      "brand": "Northbound",
+      "description": "A wardrobe-staple oxford shirt in breathable cotton with a button-down collar and a clean, versatile cut.",
+      "material": "100% Cotton Oxford",
+      "colors": ["White", "Light Blue", "Navy"],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "stock": 25,
+      "highlights": [
+        "Button-down collar",
+        "Breathable cotton weave",
+        "Reinforced seams",
+        "Easy-iron finish"
+      ]
     },
     {
       "id": "4",
@@ -39,7 +75,19 @@
       "rating": 4.5,
       "reviews": 156,
       "badge": "Sale",
-      "bg": "linear-gradient(160deg, #e0f2fe 0%, #7dd3fc 100%)"
+      "bg": "linear-gradient(160deg, #e0f2fe 0%, #7dd3fc 100%)",
+      "brand": "Northbound",
+      "description": "Stretch-cotton chinos with a modern slim fit and a comfort waistband that moves with you all day.",
+      "material": "98% Cotton, 2% Elastane",
+      "colors": ["Khaki", "Navy", "Olive", "Stone"],
+      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "stock": 18,
+      "highlights": [
+        "Stretch comfort waistband",
+        "Modern slim fit",
+        "Wrinkle-resistant fabric",
+        "Tapered leg"
+      ]
     },
     {
       "id": "5",
@@ -49,7 +97,18 @@
       "rating": 4.9,
       "reviews": 412,
       "badge": "Bestseller",
-      "bg": "linear-gradient(160deg, #ede9fe 0%, #c4b5fd 100%)"
+      "bg": "linear-gradient(160deg, #ede9fe 0%, #c4b5fd 100%)",
+      "brand": "SonicWave",
+      "description": "True-wireless earbuds with active noise cancellation, spatial audio, and up to 30 hours of playback with the charging case.",
+      "colors": ["Midnight", "White", "Space Grey"],
+      "stock": 40,
+      "warranty": "1-year limited warranty",
+      "highlights": [
+        "Active noise cancellation",
+        "Up to 30h battery with case",
+        "IPX4 sweat & water resistant",
+        "Wireless charging case"
+      ]
     },
     {
       "id": "6",
@@ -58,7 +117,18 @@
       "price": 249,
       "rating": 4.7,
       "reviews": 318,
-      "bg": "linear-gradient(160deg, #f3e8ff 0%, #d8b4fe 100%)"
+      "bg": "linear-gradient(160deg, #f3e8ff 0%, #d8b4fe 100%)",
+      "brand": "SonicWave",
+      "description": "A fitness-focused smartwatch with an always-on AMOLED display, built-in GPS, heart-rate and SpO2 tracking, and 7-day battery life.",
+      "colors": ["Graphite", "Silver", "Rose Gold"],
+      "stock": 15,
+      "warranty": "2-year limited warranty",
+      "highlights": [
+        "Always-on AMOLED display",
+        "Built-in GPS",
+        "Heart-rate & SpO2 sensors",
+        "7-day battery life"
+      ]
     },
     {
       "id": "7",
@@ -67,7 +137,18 @@
       "price": 98,
       "rating": 4.6,
       "reviews": 67,
-      "bg": "linear-gradient(160deg, #fef3c7 0%, #fcd34d 100%)"
+      "bg": "linear-gradient(160deg, #fef3c7 0%, #fcd34d 100%)",
+      "brand": "Aurelle",
+      "description": "A compact full-grain leather crossbody with an adjustable strap and gold-tone hardware — everyday elegance that goes with everything.",
+      "material": "Full-grain Leather",
+      "colors": ["Tan", "Black", "Cognac"],
+      "stock": 10,
+      "highlights": [
+        "Genuine full-grain leather",
+        "Adjustable crossbody strap",
+        "Multiple interior pockets",
+        "Gold-tone hardware"
+      ]
     },
     {
       "id": "8",
@@ -78,7 +159,18 @@
       "rating": 4.4,
       "reviews": 95,
       "badge": "Sale",
-      "bg": "linear-gradient(160deg, #ecfdf5 0%, #6ee7b7 100%)"
+      "bg": "linear-gradient(160deg, #ecfdf5 0%, #6ee7b7 100%)",
+      "brand": "SonicWave",
+      "description": "A pocket-sized speaker with room-filling 360° sound, deep bass, and 20 hours of playtime — built to go anywhere.",
+      "colors": ["Black", "Teal", "Coral"],
+      "stock": 30,
+      "warranty": "1-year limited warranty",
+      "highlights": [
+        "360° room-filling sound",
+        "20-hour playtime",
+        "IP67 waterproof & dustproof",
+        "Built-in speakerphone"
+      ]
     }
   ],
   "users": [

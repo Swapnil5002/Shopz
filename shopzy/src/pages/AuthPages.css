@@ -5,23 +5,23 @@
 }
 
 .auth__card {
-  background: #fff;
-  border: 1px solid #eef2f7;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-muted);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-card);
 }
 
 .auth__title {
   margin: 0 0 0.35rem;
   font-size: 1.6rem;
-  font-weight: 800;
-  color: #111827;
+  font-weight: var(--fw-black);
+  color: var(--color-text-strong);
 }
 
 .auth__subtitle {
   margin: 0 0 1.5rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
   font-size: 0.95rem;
 }
 
@@ -34,22 +34,24 @@
 
 .auth__label {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: #374151;
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-subtle);
 }
 
 .auth__input {
   padding: 0.65rem 0.85rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-border-strong);
   border-radius: 0.6rem;
   font-size: 0.95rem;
+  background: var(--color-surface);
+  color: var(--color-text-strong);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .auth__input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .auth__submit {
@@ -58,16 +60,16 @@
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 0.6rem;
-  background: #4f46e5;
-  color: #fff;
+  background: var(--color-brand);
+  color: var(--color-on-brand);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   cursor: pointer;
   transition: background 0.15s ease;
 }
 
 .auth__submit:hover:not(:disabled) {
-  background: #4338ca;
+  background: var(--color-brand-strong);
 }
 
 .auth__submit:disabled {
@@ -79,14 +81,14 @@
   margin: 0 0 1rem;
   padding: 0.65rem 0.85rem;
   border-radius: 0.6rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
   font-size: 0.9rem;
 }
 
 .auth__field-error {
-  color: #b91c1c;
+  color: var(--color-danger);
   font-size: 0.8rem;
 }
 
@@ -94,12 +96,12 @@
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 .auth__link {
-  color: #4f46e5;
-  font-weight: 600;
+  color: var(--color-brand);
+  font-weight: var(--fw-semibold);
   text-decoration: none;
 }
 

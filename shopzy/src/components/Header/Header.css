@@ -14,6 +14,9 @@
 }
 
 .header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--heading);
   font-size: 24px;
   font-weight: 600;
@@ -21,6 +24,11 @@
   color: var(--text-h);
   text-decoration: none;
   transition: color 0.2s;
+}
+
+.header__logo-icon {
+  flex-shrink: 0;
+  color: var(--accent);
 }
 
 .header__logo:hover {
@@ -146,13 +154,13 @@
 }
 
 .header__auth-btn--primary {
-  color: #fff;
+  color: var(--color-on-brand);
   background: var(--accent);
   border-color: var(--accent);
 }
 
 .header__auth-btn--primary:hover {
-  color: #fff;
+  color: var(--color-on-brand);
   opacity: 0.9;
 }
 

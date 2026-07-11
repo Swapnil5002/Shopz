@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchProductById } from '../api/products'
-import { FEATURES } from '../data/products'
 import './ProductDetailPage.css'
 
 const STATUS = {
@@ -38,11 +37,40 @@ const DEFAULT_HIGHLIGHTS = [
   'Fast shipping with easy returns',
 ]
 
+function buildGallery(bg) {
+  const angles = ['160deg', '25deg', '300deg', '90deg']
+  if (!bg || !/\d+deg/.test(bg)) {
+    return [bg]
+  }
+  return angles.map((angle) => bg.replace(/\d+deg/, angle))
+}
+
+function formatDeliveryDate(daysFromNow) {
+  return new Date(Date.now() + daysFromNow * 86400000).toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
+function Stars({ rating }) {
+  const full = Math.round(rating)
+  return (
+    <span className="pdp__stars" aria-hidden="true">
+      {'★'.repeat(full)}
+      {'☆'.repeat(Math.max(0, 5 - full))}
+    </span>
+  )
+}
+
 function ProductDetailPage() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [status, setStatus] = useState(STATUS.LOADING)
   const [quantity, setQuantity] = useState(1)
+  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedSize, setSelectedSize] = useState('')
+  const [activeImage, setActiveImage] = useState(0)
 
   useEffect(() => {
     let active = true
@@ -56,6 +84,10 @@ function ProductDetailPage() {
           return
         }
         setProduct(data)
+        setSelectedColor(data.colors?.[0] ?? '')
+        setSelectedSize(data.sizes?.[0] ?? '')
+        setQuantity(1)
+        setActiveImage(0)
         setStatus(STATUS.IDLE)
       })
       .catch(() => {
@@ -70,8 +102,8 @@ function ProductDetailPage() {
 
   if (status === STATUS.LOADING) {
     return (
-      <div className="product-detail">
-        <p className="product-detail__status" role="status">
+      <div className="pdp">
+        <p className="pdp__status" role="status">
           Loading product…
         </p>
       </div>
@@ -80,11 +112,11 @@ function ProductDetailPage() {
 
   if (status === STATUS.ERROR) {
     return (
-      <div className="product-detail">
-        <p className="product-detail__status product-detail__status--error" role="alert">
+      <div className="pdp">
+        <p className="pdp__status pdp__status--error" role="alert">
           Something went wrong while loading this product. Please try again later.
         </p>
-        <Link to="/" className="product-detail__back">
+        <Link to="/" className="pdp__back">
           ← Back to home
         </Link>
       </div>
@@ -93,155 +125,290 @@ function ProductDetailPage() {
 
   if (status === STATUS.NOT_FOUND) {
     return (
-      <div className="product-detail">
-        <p className="product-detail__status" role="status">
+      <div className="pdp">
+        <p className="pdp__status" role="status">
           Sorry, we couldn&apos;t find that product.
         </p>
-        <Link to="/" className="product-detail__back">
+        <Link to="/" className="pdp__back">
           ← Back to home
         </Link>
       </div>
     )
   }
 
-  const { name, category, price, originalPrice, rating, reviews, badge, bg } = product
+  const {
+    name,
+    category,
+    price,
+    originalPrice,
+    rating,
+    reviews,
+    badge,
+    bg,
+    brand,
+    description,
+    material,
+    warranty,
+    colors = [],
+    sizes = [],
+    stock,
+  } = product
 
   const savings = originalPrice ? originalPrice - price : 0
   const discountPercent = originalPrice
     ? Math.round((savings / originalPrice) * 100)
     : 0
-  const highlights = CATEGORY_HIGHLIGHTS[category] ?? DEFAULT_HIGHLIGHTS
-  const fullStars = Math.round(rating)
-
-  const decreaseQty = () => setQuantity((qty) => Math.max(1, qty - 1))
-  const increaseQty = () => setQuantity((qty) => Math.min(10, qty + 1))
+  const highlights =
+    product.highlights ?? CATEGORY_HIGHLIGHTS[category] ?? DEFAULT_HIGHLIGHTS
+  const inStock = stock === undefined || stock > 0
+  const gallery = buildGallery(bg)
+  const deliveryDate = formatDeliveryDate(4)
+  const categoryPath = `/${category.toLowerCase()}`
 
   return (
-    <div className="product-detail">
-      <Link to="/" className="product-detail__back">
-        ← Back to home
-      </Link>
+    <div className="pdp">
+      <nav className="pdp__breadcrumb" aria-label="Breadcrumb">
+        <Link to="/">Home</Link>
+        <span className="pdp__crumb-sep">›</span>
+        <Link to={categoryPath}>{category}</Link>
+        <span className="pdp__crumb-sep">›</span>
+        <span className="pdp__crumb-current">{name}</span>
+      </nav>
 
-      <div className="product-detail__grid">
-        <div className="product-detail__media" style={{ background: bg }}>
-          {badge && <span className="product-detail__badge">{badge}</span>}
+      <div className="pdp__layout">
+        <div className="pdp__gallery">
+          <div className="pdp__thumbs" role="group" aria-label="Product images">
+            {gallery.map((image, index) => (
+              <button
+                key={image}
+                type="button"
+                className={`pdp__thumb${
+                  activeImage === index ? ' pdp__thumb--active' : ''
+                }`}
+                style={{ background: image }}
+                aria-label={`View image ${index + 1}`}
+                aria-pressed={activeImage === index}
+                onMouseEnter={() => setActiveImage(index)}
+                onClick={() => setActiveImage(index)}
+              />
+            ))}
+          </div>
+          <div className="pdp__main-image" style={{ background: gallery[activeImage] }}>
+            {badge && <span className="pdp__badge">{badge}</span>}
+            <span className="pdp__image-note">{name}</span>
+          </div>
         </div>
 
-        <div className="product-detail__info">
-          <p className="product-detail__category">{category}</p>
-          <h1 className="product-detail__name">{name}</h1>
+        <div className="pdp__center">
+          <h1 className="pdp__title">{name}</h1>
+          {brand && <span className="pdp__brand">Visit the {brand} Store</span>}
 
-          <div className="product-detail__meta">
-            <div
-              className="product-detail__rating"
-              aria-label={`Rated ${rating} out of 5`}
-            >
-              <span className="product-detail__stars" aria-hidden="true">
-                {'★'.repeat(fullStars)}
-                {'☆'.repeat(Math.max(0, 5 - fullStars))}
-              </span>
-              <span>{rating}</span>
-              <span className="product-detail__reviews">({reviews} reviews)</span>
-            </div>
-            <span className="product-detail__stock">In stock</span>
+          <div className="pdp__rating-row">
+            <span className="pdp__rating-num">{rating}</span>
+            <Stars rating={rating} />
+            <a href="#reviews" className="pdp__rating-count">
+              {reviews} ratings
+            </a>
           </div>
 
-          <div className="product-detail__prices">
-            <span className="product-detail__price">${price}</span>
-            {originalPrice && (
-              <>
-                <span className="product-detail__original">${originalPrice}</span>
-                <span className="product-detail__discount">-{discountPercent}%</span>
-              </>
+          <hr className="pdp__rule" />
+
+          {badge && <span className="pdp__deal-badge">{badge}</span>}
+          <div className="pdp__price-row">
+            {discountPercent > 0 && (
+              <span className="pdp__price-discount">-{discountPercent}%</span>
             )}
+            <span className="pdp__price">
+              <sup className="pdp__price-symbol">$</sup>
+              {price}
+            </span>
           </div>
-          {savings > 0 && (
-            <p className="product-detail__savings">
-              You save ${savings} ({discountPercent}% off)
-            </p>
+          {originalPrice && (
+            <div className="pdp__list-price">
+              List Price:{' '}
+              <span className="pdp__strike">${originalPrice}</span>
+            </div>
           )}
 
-          <p className="product-detail__desc">
-            Elevate your everyday with the {name}. A Shopzy{' '}
-            {category.toLowerCase()} favourite, crafted for comfort, quality, and
-            lasting style. Thoughtfully designed and rigorously tested so it looks
-            and feels great, wear after wear.
-          </p>
+          <hr className="pdp__rule" />
 
-          <div className="product-detail__section">
-            <h2 className="product-detail__section-title">Highlights</h2>
-            <ul className="product-detail__highlights">
-              {highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="product-detail__purchase">
-            <div className="product-detail__qty" role="group" aria-label="Quantity">
-              <button
-                type="button"
-                className="product-detail__qty-btn"
-                onClick={decreaseQty}
-                aria-label="Decrease quantity"
-                disabled={quantity <= 1}
-              >
-                −
-              </button>
-              <span className="product-detail__qty-value" aria-live="polite">
-                {quantity}
-              </span>
-              <button
-                type="button"
-                className="product-detail__qty-btn"
-                onClick={increaseQty}
-                aria-label="Increase quantity"
-                disabled={quantity >= 10}
-              >
-                +
-              </button>
+          {colors.length > 0 && (
+            <div className="pdp__variant">
+              <div className="pdp__variant-label">
+                Colour: <strong>{selectedColor}</strong>
+              </div>
+              <div className="pdp__chips" role="group" aria-label="Colour">
+                {colors.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    className={`pdp__chip${
+                      selectedColor === color ? ' pdp__chip--active' : ''
+                    }`}
+                    aria-pressed={selectedColor === color}
+                    onClick={() => setSelectedColor(color)}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
             </div>
-            <button type="button" className="product-detail__btn">
-              Add {quantity} to cart · ${price * quantity}
-            </button>
-          </div>
+          )}
 
-          <div className="product-detail__section">
-            <h2 className="product-detail__section-title">Specifications</h2>
-            <dl className="product-detail__specs">
-              <div className="product-detail__spec">
-                <dt>SKU</dt>
-                <dd>SKZ-{id}</dd>
+          {sizes.length > 0 && (
+            <div className="pdp__variant">
+              <div className="pdp__variant-label">
+                Size: <strong>{selectedSize}</strong>
               </div>
-              <div className="product-detail__spec">
-                <dt>Category</dt>
-                <dd>{category}</dd>
+              <div className="pdp__chips" role="group" aria-label="Size">
+                {sizes.map((size) => (
+                  <button
+                    key={size}
+                    type="button"
+                    className={`pdp__chip pdp__chip--size${
+                      selectedSize === size ? ' pdp__chip--active' : ''
+                    }`}
+                    aria-pressed={selectedSize === size}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
               </div>
-              <div className="product-detail__spec">
-                <dt>Rating</dt>
-                <dd>{rating} / 5</dd>
-              </div>
-              <div className="product-detail__spec">
-                <dt>Reviews</dt>
-                <dd>{reviews}</dd>
-              </div>
-              <div className="product-detail__spec">
-                <dt>Availability</dt>
-                <dd>In stock</dd>
-              </div>
-            </dl>
-          </div>
+            </div>
+          )}
 
-          <ul className="product-detail__perks">
-            {FEATURES.map(({ label, detail }) => (
-              <li key={label} className="product-detail__perk">
-                <strong>{label}</strong>
-                <span>{detail}</span>
-              </li>
+          <hr className="pdp__rule" />
+
+          <h2 className="pdp__section-title">About this item</h2>
+          <ul className="pdp__about">
+            {highlights.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
+
+          <p className="pdp__desc">
+            {description ??
+              `Elevate your everyday with the ${name}. A Shopzy ${category.toLowerCase()} favourite, crafted for comfort, quality, and lasting style.`}
+          </p>
         </div>
+
+        <aside className="pdp__buybox">
+          <div className="pdp__buybox-price">
+            <sup className="pdp__price-symbol">$</sup>
+            {price}
+          </div>
+
+          <p className="pdp__delivery">
+            FREE delivery <strong>{deliveryDate}</strong>
+          </p>
+          <p className="pdp__ship-note">Order within 8 hrs for the earliest delivery</p>
+
+          {inStock ? (
+            <p className="pdp__stock-line">In stock</p>
+          ) : (
+            <p className="pdp__stock-line pdp__stock-line--out">Currently unavailable</p>
+          )}
+
+          <label className="pdp__qty">
+            Quantity:
+            <select
+              className="pdp__qty-select"
+              value={quantity}
+              onChange={(event) => setQuantity(Number(event.target.value))}
+              disabled={!inStock}
+            >
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <button type="button" className="pdp__add-btn" disabled={!inStock}>
+            Add to Cart
+          </button>
+          <button type="button" className="pdp__buy-btn" disabled={!inStock}>
+            Buy Now
+          </button>
+
+          <ul className="pdp__assurance">
+            <li>
+              <span>Ships from</span>
+              <strong>Shopzy</strong>
+            </li>
+            <li>
+              <span>Sold by</span>
+              <strong>{brand ?? 'Shopzy'}</strong>
+            </li>
+            <li>
+              <span>Payment</span>
+              <strong>Secure transaction</strong>
+            </li>
+            <li>
+              <span>Returns</span>
+              <strong>30-day returns</strong>
+            </li>
+          </ul>
+        </aside>
       </div>
+
+      <section className="pdp__details">
+        <h2 className="pdp__section-title">Product details</h2>
+        <dl className="pdp__specs">
+          <div className="pdp__spec">
+            <dt>Brand</dt>
+            <dd>{brand ?? 'Shopzy'}</dd>
+          </div>
+          <div className="pdp__spec">
+            <dt>Category</dt>
+            <dd>{category}</dd>
+          </div>
+          {material && (
+            <div className="pdp__spec">
+              <dt>Material</dt>
+              <dd>{material}</dd>
+            </div>
+          )}
+          {colors.length > 0 && (
+            <div className="pdp__spec">
+              <dt>Available colours</dt>
+              <dd>{colors.join(', ')}</dd>
+            </div>
+          )}
+          {sizes.length > 0 && (
+            <div className="pdp__spec">
+              <dt>Available sizes</dt>
+              <dd>{sizes.join(', ')}</dd>
+            </div>
+          )}
+          {warranty && (
+            <div className="pdp__spec">
+              <dt>Warranty</dt>
+              <dd>{warranty}</dd>
+            </div>
+          )}
+          <div className="pdp__spec">
+            <dt>Customer rating</dt>
+            <dd>
+              {rating} out of 5 ({reviews} ratings)
+            </dd>
+          </div>
+          <div className="pdp__spec">
+            <dt>Availability</dt>
+            <dd>
+              {inStock
+                ? `In stock${typeof stock === 'number' ? ` (${stock} units)` : ''}`
+                : 'Out of stock'}
+            </dd>
+          </div>
+          <div className="pdp__spec">
+            <dt>ASIN</dt>
+            <dd>SKZ-{id}</dd>
+          </div>
+        </dl>
+      </section>
     </div>
   )
 }
