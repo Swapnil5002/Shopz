@@ -1,38 +1,14 @@
-import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
-import HomePage, { PRODUCT_STATUS } from "./pages/HomePage";
+import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
-import { fetchProducts } from "./api/products";
+import { useProducts } from "./hooks/useProducts";
 import "./App.css";
 
 function Home() {
-  const [products, setProducts] = useState([]);
-  const [productsStatus, setProductsStatus] = useState(PRODUCT_STATUS.LOADING);
+  const { products, status } = useProducts();
 
-  useEffect(() => {
-    let active = true;
-
-    setProductsStatus(PRODUCT_STATUS.LOADING);
-    fetchProducts()
-      .then((data) => {
-        if (!active) return;
-        setProducts(data);
-        setProductsStatus(
-          data.length === 0 ? PRODUCT_STATUS.EMPTY : PRODUCT_STATUS.IDLE,
-        );
-      })
-      .catch(() => {
-        if (!active) return;
-        setProductsStatus(PRODUCT_STATUS.ERROR);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  return <HomePage products={products} productsStatus={productsStatus} />;
+  return <HomePage products={products} productsStatus={status} />;
 }
 
 function App() {

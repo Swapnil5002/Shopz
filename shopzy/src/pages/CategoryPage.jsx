@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard/ProductCard'
-import { fetchProducts } from '../api/products'
+import { loadProducts } from '../store/productsSlice'
 import { PRODUCT_STATUS } from './HomePage'
 import './CategoryPage.css'
 
@@ -21,28 +22,13 @@ function CategoryPage() {
   const meta = CATEGORY_META[key]
   const label = meta?.label ?? titleCase(key)
 
-  const [products, setProducts] = useState([])
-  const [status, setStatus] = useState(PRODUCT_STATUS.LOADING)
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.products.items)
+  const status = useSelector((state) => state.products.status)
 
   useEffect(() => {
-    let active = true
-
-    setStatus(PRODUCT_STATUS.LOADING)
-    fetchProducts(label)
-      .then((data) => {
-        if (!active) return
-        setProducts(data)
-        setStatus(data.length === 0 ? PRODUCT_STATUS.EMPTY : PRODUCT_STATUS.IDLE)
-      })
-      .catch(() => {
-        if (!active) return
-        setStatus(PRODUCT_STATUS.ERROR)
-      })
-
-    return () => {
-      active = false
-    }
-  }, [label])
+    dispatch(loadProducts(label))
+  }, [dispatch, label])
 
   return (
     <div className="category">

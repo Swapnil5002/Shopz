@@ -204,6 +204,22 @@
   color: var(--text-h);
 }
 
+.home-products__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+}
+
+.home-products__controls .product-filters {
+  flex: 2 1 320px;
+}
+
 .home-products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

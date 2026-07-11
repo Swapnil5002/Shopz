@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard/ProductCard'
+import SearchBar from '../components/SearchBar/SearchBar'
+import ProductFilters from '../components/ProductFilters/ProductFilters'
 import { CATEGORIES, FEATURES, PRODUCTS } from '../data/products'
 import './HomePage.css'
 
@@ -58,6 +60,36 @@ function HomePage({
 }) {
   const [newsletterStatus, setNewsletterStatus] = useState(NEWSLETTER_STATUS.IDLE)
   const [newsletterError, setNewsletterError] = useState('')
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [sort, setSort] = useState('featured')
+
+  const categoryLabels = CATEGORIES.map((category) => category.label)
+
+  const visibleProducts = useMemo(() => {
+    let list = products
+
+    if (activeCategory !== 'all') {
+      list = list.filter((product) => product.category === activeCategory)
+    }
+
+    const query = searchQuery.trim().toLowerCase()
+    if (query) {
+      list = list.filter((product) => product.name.toLowerCase().includes(query))
+    }
+
+    const sorted = [...list]
+    if (sort === 'price-asc') {
+      sorted.sort((a, b) => a.price - b.price)
+    } else if (sort === 'price-desc') {
+      sorted.sort((a, b) => b.price - a.price)
+    } else if (sort === 'rating') {
+      sorted.sort((a, b) => b.rating - a.rating)
+    }
+
+    return sorted
+  }, [products, activeCategory, searchQuery, sort])
 
   const handleSubscribe = async (event) => {
     event.preventDefault()
