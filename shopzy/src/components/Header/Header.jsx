@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../store/authSlice'
 import './Header.css'
 
 const NAV_ITEMS = [
@@ -10,8 +12,17 @@ const NAV_ITEMS = [
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.auth.user)
 
   const closeMenu = () => setMenuOpen(false)
+
+  const handleLogout = () => {
+    dispatch(logout())
+    closeMenu()
+    navigate('/')
+  }
 
   return (
     <header className="header">
@@ -45,6 +56,40 @@ function Header() {
               </Link>
             </li>
           ))}
+        </ul>
+
+        <ul className="header__nav-list header__nav-list--auth">
+          {user ? (
+            <>
+              <li>
+                <Link to="/profile" className="header__nav-link" onClick={closeMenu}>
+                  {user.name || 'Profile'}
+                </Link>
+              </li>
+              <li>
+                <button type="button" className="header__auth-btn" onClick={handleLogout}>
+                  Log out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" className="header__nav-link" onClick={closeMenu}>
+                  Log in
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="header__auth-btn header__auth-btn--primary"
+                  onClick={closeMenu}
+                >
+                  Sign up
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import HomePage, { PRODUCT_STATUS } from './HomePage'
 
@@ -13,36 +14,44 @@ const sampleProduct = {
   bg: 'linear-gradient(160deg, #fff 0%, #eee 100%)',
 }
 
+function renderHome(props = {}) {
+  return render(
+    <MemoryRouter>
+      <HomePage {...props} />
+    </MemoryRouter>,
+  )
+}
+
 describe('HomePage', () => {
   it('renders featured products in the default idle state', () => {
-    render(<HomePage products={[sampleProduct]} />)
+    renderHome({ products: [sampleProduct] })
 
     expect(screen.getByRole('heading', { name: 'Featured products' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Test Product' })).toBeInTheDocument()
   })
 
   it('shows loading state', () => {
-    render(<HomePage products={[]} productsStatus={PRODUCT_STATUS.LOADING} />)
+    renderHome({ products: [], productsStatus: PRODUCT_STATUS.LOADING })
 
     expect(screen.getByText(/loading products/i)).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Add to cart' })).not.toBeInTheDocument()
   })
 
   it('shows error state', () => {
-    render(<HomePage products={[]} productsStatus={PRODUCT_STATUS.ERROR} />)
+    renderHome({ products: [], productsStatus: PRODUCT_STATUS.ERROR })
 
     expect(screen.getByRole('alert')).toHaveTextContent(/something went wrong/i)
   })
 
   it('shows empty state', () => {
-    render(<HomePage products={[]} productsStatus={PRODUCT_STATUS.EMPTY} />)
+    renderHome({ products: [], productsStatus: PRODUCT_STATUS.EMPTY })
 
     expect(screen.getByText(/no products found/i)).toBeInTheDocument()
   })
 
   it('shows required email error when subscribing with empty input', async () => {
     const user = userEvent.setup()
-    render(<HomePage products={[sampleProduct]} />)
+    renderHome({ products: [sampleProduct] })
 
     await user.click(screen.getByRole('button', { name: 'Subscribe' }))
 
@@ -52,7 +61,7 @@ describe('HomePage', () => {
 
   it('shows validation error for invalid email', async () => {
     const user = userEvent.setup()
-    render(<HomePage products={[sampleProduct]} />)
+    renderHome({ products: [sampleProduct] })
 
     await user.type(screen.getByLabelText('Email address'), 'not-an-email')
     await user.click(screen.getByRole('button', { name: 'Subscribe' }))
@@ -62,7 +71,7 @@ describe('HomePage', () => {
 
   it('shows success state after valid subscription', async () => {
     const user = userEvent.setup()
-    render(<HomePage products={[sampleProduct]} />)
+    renderHome({ products: [sampleProduct] })
 
     await user.type(screen.getByLabelText('Email address'), 'shopper@example.com')
     await user.click(screen.getByRole('button', { name: 'Subscribe' }))
@@ -74,7 +83,7 @@ describe('HomePage', () => {
   it('shows error when subscription handler fails', async () => {
     const user = userEvent.setup()
     const onSubscribe = vi.fn().mockRejectedValue(new Error('Network error'))
-    render(<HomePage products={[sampleProduct]} onSubscribe={onSubscribe} />)
+    renderHome({ products: [sampleProduct], onSubscribe })
 
     await user.type(screen.getByLabelText('Email address'), 'shopper@example.com')
     await user.click(screen.getByRole('button', { name: 'Subscribe' }))

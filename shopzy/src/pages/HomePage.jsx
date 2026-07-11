@@ -18,6 +18,8 @@ export const NEWSLETTER_STATUS = {
   ERROR: 'error',
 }
 
+const CATEGORY_LABELS = CATEGORIES.map((category) => category.label)
+
 function FeaturedProducts({ products, status, onAddToCart }) {
   if (status === PRODUCT_STATUS.LOADING) {
     return (
@@ -64,8 +66,6 @@ function HomePage({
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
   const [sort, setSort] = useState('featured')
-
-  const categoryLabels = CATEGORIES.map((category) => category.label)
 
   const visibleProducts = useMemo(() => {
     let list = products
@@ -186,8 +186,21 @@ function HomePage({
           </a>
         </div>
 
+        {productsStatus === PRODUCT_STATUS.IDLE && (
+          <div className="home-products__controls">
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
+            <ProductFilters
+              categories={CATEGORY_LABELS}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              sort={sort}
+              onSortChange={setSort}
+            />
+          </div>
+        )}
+
         <FeaturedProducts
-          products={products}
+          products={visibleProducts}
           status={productsStatus}
           onAddToCart={onAddToCart}
         />

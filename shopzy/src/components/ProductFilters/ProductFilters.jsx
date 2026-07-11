@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import './ProductFilters.css'
 
 export const SORT_OPTIONS = [
@@ -56,4 +57,4 @@ function ProductFilters({
   )
 }
 
-export default ProductFilters
+export default memo(ProductFilters)

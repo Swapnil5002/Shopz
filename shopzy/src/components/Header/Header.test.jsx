@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import { describe, expect, it } from 'vitest'
+import { store } from '../../store'
 import Header from './Header'
 
 function renderHeader() {
   return render(
-    <MemoryRouter>
-      <Header />
-    </MemoryRouter>,
+    <Provider store={store}>
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    </Provider>,
   )
 }
 

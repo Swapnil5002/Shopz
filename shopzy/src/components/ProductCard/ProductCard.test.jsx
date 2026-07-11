@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import ProductCard from './ProductCard'
 
@@ -13,9 +14,17 @@ const baseProduct = {
   bg: 'linear-gradient(160deg, #fce7f3 0%, #f9a8d4 100%)',
 }
 
+function renderCard(product = baseProduct, props = {}) {
+  return render(
+    <MemoryRouter>
+      <ProductCard product={product} {...props} />
+    </MemoryRouter>,
+  )
+}
+
 describe('ProductCard', () => {
   it('renders product details', () => {
-    render(<ProductCard product={baseProduct} />)
+    renderCard()
 
     expect(screen.getByRole('heading', { name: 'Silk Wrap Dress' })).toBeInTheDocument()
     expect(screen.getByText('$89')).toBeInTheDocument()
@@ -23,19 +32,24 @@ describe('ProductCard', () => {
     expect(screen.getByLabelText('Rated 4.8 out of 5')).toBeInTheDocument()
   })
 
-  it('renders sale badge and original price when provided', () => {
-    render(
-      <ProductCard
-        product={{ ...baseProduct, badge: 'Sale', originalPrice: 119 }}
-      />,
+  it('links to the product detail page', () => {
+    renderCard()
+
+    expect(screen.getByRole('link', { name: 'Silk Wrap Dress' })).toHaveAttribute(
+      'href',
+      '/product/1',
     )
+  })
+
+  it('renders sale badge and original price when provided', () => {
+    renderCard({ ...baseProduct, badge: 'Sale', originalPrice: 119 })
 
     expect(screen.getByText('Sale')).toBeInTheDocument()
     expect(screen.getByText('$119')).toBeInTheDocument()
   })
 
   it('does not render badge or original price when omitted', () => {
-    render(<ProductCard product={baseProduct} />)
+    renderCard()
 
     expect(screen.queryByText('Sale')).not.toBeInTheDocument()
     expect(screen.queryByText('$119')).not.toBeInTheDocument()
@@ -44,7 +58,7 @@ describe('ProductCard', () => {
   it('calls onAddToCart when add to cart is clicked', async () => {
     const user = userEvent.setup()
     const onAddToCart = vi.fn()
-    render(<ProductCard product={baseProduct} onAddToCart={onAddToCart} />)
+    renderCard(baseProduct, { onAddToCart })
 
     await user.click(screen.getByRole('button', { name: 'Add to cart' }))
 

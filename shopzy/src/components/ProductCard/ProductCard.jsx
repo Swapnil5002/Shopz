@@ -1,17 +1,25 @@
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
 import './ProductCard.css'
 
 function ProductCard({ product, onAddToCart }) {
-  const { name, category, price, originalPrice, rating, reviews, badge, bg } = product
+  const { id, name, category, price, originalPrice, rating, reviews, badge, bg } = product
 
   return (
     <article className="product-card">
-      <div className="product-card__media" style={{ background: bg }}>
-        {badge && <span className="product-card__badge">{badge}</span>}
-        <span className="product-card__category">{category}</span>
-      </div>
+      <Link to={`/product/${id}`} className="product-card__media-link" aria-label={`View ${name}`}>
+        <div className="product-card__media" style={{ background: bg }}>
+          {badge && <span className="product-card__badge">{badge}</span>}
+          <span className="product-card__category">{category}</span>
+        </div>
+      </Link>
 
       <div className="product-card__body">
-        <h3 className="product-card__name">{name}</h3>
+        <h3 className="product-card__name">
+          <Link to={`/product/${id}`} className="product-card__name-link">
+            {name}
+          </Link>
+        </h3>
 
         <div className="product-card__rating" aria-label={`Rated ${rating} out of 5`}>
           <span className="product-card__stars" aria-hidden="true">★ {rating}</span>
@@ -38,4 +46,4 @@ function ProductCard({ product, onAddToCart }) {
   )
 }
 
-export default ProductCard
+export default memo(ProductCard)
