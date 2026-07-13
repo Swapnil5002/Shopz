@@ -128,7 +128,7 @@ function HomePage({
           <p className="home-hero__eyebrow">New season arrivals</p>
           <h1 className="home-hero__title">Style meets smart shopping</h1>
           <p className="home-hero__text">
-            Discover curated fashion for women and men, plus the latest electronics — all in one place.
+            Discover curated fashion for women and men, plus the latest electronics npm run server all in one place.
           </p>
           <div className="home-hero__actions">
             <a href="#featured" className="home-hero__btn home-hero__btn--primary">

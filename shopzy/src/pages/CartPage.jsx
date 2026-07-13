@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   clearCart,
@@ -13,22 +12,27 @@ import './CartPage.css'
 
 function CartPage() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const items = useSelector(selectCartItems)
   const count = useSelector(selectCartCount)
   const total = useSelector(selectCartTotal)
-  const [checkedOut, setCheckedOut] = useState(false)
+  const user = useSelector((state) => state.auth.user)
+
+  const handleCheckout = () => {
+    if (!user) {
+      navigate('/login', { state: { from: '/cart' } })
+      return
+    }
+    navigate('/checkout')
+  }
 
   if (items.length === 0) {
     return (
       <div className="cart">
         <div className="cart__empty">
-          <h1 className="cart__empty-title">
-            {checkedOut ? 'Thanks for your order!' : 'Your cart is empty'}
-          </h1>
+          <h1 className="cart__empty-title">Your cart is empty</h1>
           <p className="cart__empty-text">
-            {checkedOut
-              ? 'This is a demo checkout — no payment was taken.'
-              : 'Browse our collections and add something you love.'}
+            Browse our collections and add something you love.
           </p>
           <Link to="/" className="cart__empty-btn">
             Continue shopping
@@ -136,16 +140,14 @@ function CartPage() {
             <span>Order total</span>
             <span>${total.toFixed(2)}</span>
           </div>
-          <button
-            type="button"
-            className="cart__checkout"
-            onClick={() => {
-              setCheckedOut(true)
-              dispatch(clearCart())
-            }}
-          >
-            Proceed to checkout
+          <button type="button" className="cart__checkout" onClick={handleCheckout}>
+            {user ? 'Proceed to checkout' : 'Sign in to checkout'}
           </button>
+          {!user && (
+            <p className="cart__signin-note">
+              You&apos;ll need to sign in to complete your order.
+            </p>
+          )}
           <Link to="/" className="cart__continue">
             Continue shopping
           </Link>

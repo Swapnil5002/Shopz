@@ -221,6 +221,13 @@
   background: var(--color-brand-strong);
 }
 
+.cart__signin-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
 .cart__continue {
   display: block;
   margin-top: 0.85rem;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_STATUS, clearAuthError, login } from '../store/authSlice'
 import './AuthPages.css'
@@ -7,8 +7,11 @@ import './AuthPages.css'
 function LoginPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const status = useSelector((state) => state.auth.status)
   const error = useSelector((state) => state.auth.error)
+
+  const redirectTo = location.state?.from ?? '/profile'
 
   const [form, setForm] = useState({ email: '', password: '' })
 
@@ -25,7 +28,7 @@ function LoginPage() {
     event.preventDefault()
     const result = await dispatch(login(form))
     if (login.fulfilled.match(result)) {
-      navigate('/profile')
+      navigate(redirectTo, { replace: true })
     }
   }
 
