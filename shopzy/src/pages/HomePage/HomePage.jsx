@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
-import ProductCard from '../components/ProductCard/ProductCard'
-import SearchBar from '../components/SearchBar/SearchBar'
-import ProductFilters from '../components/ProductFilters/ProductFilters'
-import { CATEGORIES, FEATURES, PRODUCTS } from '../data/products'
-import { buildSrcSet, getResponsiveImage } from '../utils/image'
+import ProductCard from '../../components/ProductCard/ProductCard'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import ProductFilters from '../../components/ProductFilters/ProductFilters'
+import { CATEGORIES, FEATURES, PRODUCTS } from '../../data/products'
+import { buildSrcSet, getResponsiveImage } from '../../utils/image'
 import './HomePage.css'
 
 export const PRODUCT_STATUS = {

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectCartCount, selectCartItems, selectCartTotal } from '../store/cartSlice'
-import { CHECKOUT_MODE, createCheckoutSession } from '../api/checkout'
+import { selectCartCount, selectCartItems, selectCartTotal } from '../../store/cartSlice'
+import { CHECKOUT_MODE, createCheckoutSession } from '../../api/checkout'
 import './CheckoutPage.css'
 
 function CheckoutPage() {

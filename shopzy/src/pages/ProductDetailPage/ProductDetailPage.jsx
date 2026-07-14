@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { fetchProductById } from '../api/products'
-import { addToCart } from '../store/cartSlice'
-import { buildSrcSet, getResponsiveImage } from '../utils/image'
+import { fetchProductById } from '../../api/products'
+import { addToCart } from '../../store/cartSlice'
+import { buildSrcSet, getResponsiveImage } from '../../utils/image'
 import './ProductDetailPage.css'
 
 const PDP_MAIN_WIDTHS = [400, 600, 800, 1000]

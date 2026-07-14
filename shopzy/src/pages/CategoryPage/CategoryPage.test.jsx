@@ -4,10 +4,10 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import CategoryPage from "./CategoryPage";
-import productsReducer from "../store/productsSlice";
-import { fetchProducts } from "../api/products";
+import productsReducer from "../../store/productsSlice";
+import { fetchProducts } from "../../api/products";
 
-vi.mock("../api/products", () => ({
+vi.mock("../../api/products", () => ({
   fetchProducts: vi.fn(),
 }));
 

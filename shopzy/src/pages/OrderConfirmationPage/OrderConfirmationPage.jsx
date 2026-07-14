@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { clearCart } from '../store/cartSlice'
-import './CheckoutPage.css'
+import { clearCart } from '../../store/cartSlice'
+import '../CheckoutPage/CheckoutPage.css'
 
 function OrderConfirmationPage() {
   const location = useLocation()

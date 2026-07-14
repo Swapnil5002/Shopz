@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { AUTH_STATUS, clearAuthError, login } from '../store/authSlice'
-import './AuthPages.css'
+import { AUTH_STATUS, clearAuthError, login } from '../../store/authSlice'
+import '../AuthPages.css'
 
 function LoginPage() {
   const dispatch = useDispatch()

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { AUTH_STATUS, clearAuthError, logout, updateProfile } from '../store/authSlice'
+import { AUTH_STATUS, clearAuthError, logout, updateProfile } from '../../store/authSlice'
 import './ProfilePage.css'
 
 function ProfilePage() {

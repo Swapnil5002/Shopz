@@ -2,9 +2,9 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, it } from "vitest";
 import LoginPage from "./LoginPage";
-import { loginRequest } from "../api/auth";
+import { loginRequest } from "../../api/auth";
 
-vi.mock("../api/auth", () => ({
+vi.mock("../../api/auth", () => ({
   loginRequest: vi.fn(),
 }));
 

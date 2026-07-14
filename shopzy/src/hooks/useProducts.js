@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchProducts } from '../api/products'
-import { PRODUCT_STATUS } from '../pages/HomePage'
+import { PRODUCT_STATUS } from '../pages/HomePage/HomePage'
 
 export function useProducts(category) {
   const [products, setProducts] = useState([])

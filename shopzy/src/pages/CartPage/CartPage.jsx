@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { buildSrcSet, getResponsiveImage } from '../utils/image'
+import { buildSrcSet, getResponsiveImage } from '../../utils/image'
 import {
   clearCart,
   removeFromCart,
@@ -8,7 +8,7 @@ import {
   selectCartItems,
   selectCartTotal,
   setQuantity,
-} from '../store/cartSlice'
+} from '../../store/cartSlice'
 import './CartPage.css'
 
 function CartPage() {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { AUTH_STATUS, clearAuthError, register } from '../store/authSlice'
-import './AuthPages.css'
+import { AUTH_STATUS, clearAuthError, register } from '../../store/authSlice'
+import '../AuthPages.css'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
