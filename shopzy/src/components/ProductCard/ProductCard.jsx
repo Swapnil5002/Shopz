@@ -44,9 +44,9 @@ function ProductCard({ product, onAddToCart }) {
 
         <div className="product-card__footer">
           <div className="product-card__prices">
-            <span className="product-card__price">${price}</span>
+            <span className="product-card__price">₹{price}</span>
             {originalPrice && (
-              <span className="product-card__original">${originalPrice}</span>
+              <span className="product-card__original">₹{originalPrice}</span>
             )}
           </div>
           <button

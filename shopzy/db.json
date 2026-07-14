@@ -14,8 +14,18 @@
       "brand": "Aurelle",
       "description": "A fluid silk-blend wrap dress with an adjustable tie waist and a flattering V-neckline. Effortlessly elegant from brunch to evening.",
       "material": "70% Silk, 30% Viscose",
-      "colors": ["Blush", "Ivory", "Black"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Blush",
+        "Ivory",
+        "Black"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 12,
       "highlights": [
         "Adjustable tie waist",
@@ -37,8 +47,17 @@
       "brand": "Aurelle",
       "description": "A relaxed-fit linen blazer with a soft shoulder and single-button closure — effortless layering for warm days.",
       "material": "100% European Linen",
-      "colors": ["Sand", "Sage", "White"],
-      "sizes": ["XS", "S", "M", "L"],
+      "colors": [
+        "Sand",
+        "Sage",
+        "White"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
       "stock": 8,
       "highlights": [
         "Breathable pure linen",
@@ -59,8 +78,18 @@
       "brand": "Northbound",
       "description": "A wardrobe-staple oxford shirt in breathable cotton with a button-down collar and a clean, versatile cut.",
       "material": "100% Cotton Oxford",
-      "colors": ["White", "Light Blue", "Navy"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "White",
+        "Light Blue",
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 25,
       "highlights": [
         "Button-down collar",
@@ -83,8 +112,20 @@
       "brand": "Northbound",
       "description": "Stretch-cotton chinos with a modern slim fit and a comfort waistband that moves with you all day.",
       "material": "98% Cotton, 2% Elastane",
-      "colors": ["Khaki", "Navy", "Olive", "Stone"],
-      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "colors": [
+        "Khaki",
+        "Navy",
+        "Olive",
+        "Stone"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
       "stock": 18,
       "highlights": [
         "Stretch comfort waistband",
@@ -105,7 +146,11 @@
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "True-wireless earbuds with active noise cancellation, spatial audio, and up to 30 hours of playback with the charging case.",
-      "colors": ["Midnight", "White", "Space Grey"],
+      "colors": [
+        "Midnight",
+        "White",
+        "Space Grey"
+      ],
       "stock": 40,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -126,7 +171,11 @@
       "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A fitness-focused smartwatch with an always-on AMOLED display, built-in GPS, heart-rate and SpO2 tracking, and 7-day battery life.",
-      "colors": ["Graphite", "Silver", "Rose Gold"],
+      "colors": [
+        "Graphite",
+        "Silver",
+        "Rose Gold"
+      ],
       "stock": 15,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -148,7 +197,11 @@
       "brand": "Aurelle",
       "description": "A compact full-grain leather crossbody with an adjustable strap and gold-tone hardware — everyday elegance that goes with everything.",
       "material": "Full-grain Leather",
-      "colors": ["Tan", "Black", "Cognac"],
+      "colors": [
+        "Tan",
+        "Black",
+        "Cognac"
+      ],
       "stock": 10,
       "highlights": [
         "Genuine full-grain leather",
@@ -170,7 +223,11 @@
       "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A pocket-sized speaker with room-filling 360° sound, deep bass, and 20 hours of playtime — built to go anywhere.",
-      "colors": ["Black", "Teal", "Coral"],
+      "colors": [
+        "Black",
+        "Teal",
+        "Coral"
+      ],
       "stock": 30,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -194,8 +251,18 @@
       "brand": "Aurelle",
       "description": "A breezy floral maxi dress with a smocked bodice and tiered skirt — made for warm-weather days and golden-hour evenings.",
       "material": "100% Viscose",
-      "colors": ["Meadow", "Blush", "Navy"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Meadow",
+        "Blush",
+        "Navy"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 20,
       "highlights": [
         "Smocked stretch bodice",
@@ -217,8 +284,17 @@
       "brand": "Aurelle",
       "description": "An ultra-soft pure cashmere crewneck with ribbed trims — lightweight warmth that layers beautifully all season.",
       "material": "100% Cashmere",
-      "colors": ["Oatmeal", "Charcoal", "Camel"],
-      "sizes": ["XS", "S", "M", "L"],
+      "colors": [
+        "Oatmeal",
+        "Charcoal",
+        "Camel"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
       "stock": 14,
       "highlights": [
         "Grade-A pure cashmere",
@@ -239,8 +315,18 @@
       "brand": "Aurelle",
       "description": "Sharp high-waist trousers with a wide leg and pressed crease for a polished, elongating silhouette.",
       "material": "64% Polyester, 33% Viscose, 3% Elastane",
-      "colors": ["Black", "Stone", "Chocolate"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Black",
+        "Stone",
+        "Chocolate"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 22,
       "highlights": [
         "Elongating high waist",
@@ -263,8 +349,18 @@
       "brand": "Aurelle",
       "description": "A fluid pleated midi skirt with a satin finish that catches the light and moves with every step.",
       "material": "100% Recycled Polyester",
-      "colors": ["Emerald", "Champagne", "Black"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Emerald",
+        "Champagne",
+        "Black"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 17,
       "highlights": [
         "Knife-pleat construction",
@@ -285,8 +381,18 @@
       "brand": "Aurelle",
       "description": "A fitted ribbed knit top with a square neckline — a versatile layering staple for any wardrobe.",
       "material": "95% Cotton, 5% Elastane",
-      "colors": ["White", "Sage", "Terracotta", "Black"],
-      "sizes": ["XS", "S", "M", "L"],
+      "colors": [
+        "White",
+        "Sage",
+        "Terracotta",
+        "Black"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
       "stock": 40,
       "highlights": [
         "Stretch ribbed knit",
@@ -309,8 +415,18 @@
       "brand": "Aurelle",
       "description": "A timeless longline overcoat in a warm wool blend with a clean notch lapel and deep welt pockets.",
       "material": "70% Wool, 30% Polyester",
-      "colors": ["Camel", "Grey", "Black"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Camel",
+        "Grey",
+        "Black"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 9,
       "highlights": [
         "Warm wool-blend fabric",
@@ -331,8 +447,18 @@
       "brand": "Aurelle",
       "description": "A delicate satin camisole with adjustable straps and a subtle cowl neck — dress it up or down.",
       "material": "100% Polyester Satin",
-      "colors": ["Ivory", "Rose", "Slate"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Ivory",
+        "Rose",
+        "Slate"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 33,
       "highlights": [
         "Lustrous satin finish",
@@ -353,8 +479,18 @@
       "brand": "Aurelle",
       "description": "A vintage-wash denim jacket with a cropped fit, chest flap pockets, and a broken-in feel from day one.",
       "material": "100% Cotton Denim",
-      "colors": ["Mid Wash", "Light Wash", "Black"],
-      "sizes": ["XS", "S", "M", "L", "XL"],
+      "colors": [
+        "Mid Wash",
+        "Light Wash",
+        "Black"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 26,
       "highlights": [
         "Vintage-wash denim",
@@ -377,7 +513,11 @@
       "brand": "Aurelle",
       "description": "A roomy quilted tote with magnetic closure and a padded laptop sleeve — everyday carry with a soft, structured look.",
       "material": "Vegan Leather",
-      "colors": ["Cream", "Black", "Taupe"],
+      "colors": [
+        "Cream",
+        "Black",
+        "Taupe"
+      ],
       "stock": 19,
       "highlights": [
         "Padded 14\" laptop sleeve",
@@ -398,8 +538,19 @@
       "brand": "Aurelle",
       "description": "Elegant strappy sandals on a comfortable block heel with a cushioned footbed for all-night wear.",
       "material": "Leather upper, synthetic sole",
-      "colors": ["Nude", "Black", "Gold"],
-      "sizes": ["5", "6", "7", "8", "9", "10"],
+      "colors": [
+        "Nude",
+        "Black",
+        "Gold"
+      ],
+      "sizes": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
       "stock": 15,
       "highlights": [
         "Stable block heel",
@@ -421,8 +572,17 @@
       "brand": "Aurelle",
       "description": "A cropped button-up cardigan in a soft cotton knit with pearlescent buttons — sweet layered over dresses or tees.",
       "material": "80% Cotton, 20% Nylon",
-      "colors": ["Butter", "Powder Blue", "Ivory"],
-      "sizes": ["XS", "S", "M", "L"],
+      "colors": [
+        "Butter",
+        "Powder Blue",
+        "Ivory"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
       "stock": 28,
       "highlights": [
         "Soft cotton-blend knit",
@@ -444,8 +604,18 @@
       "brand": "Northbound",
       "description": "A fine-gauge merino wool sweater with a classic crewneck — naturally temperature-regulating and itch-free.",
       "material": "100% Merino Wool",
-      "colors": ["Navy", "Forest", "Grey Marl"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "Navy",
+        "Forest",
+        "Grey Marl"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 21,
       "highlights": [
         "Fine-gauge merino wool",
@@ -468,8 +638,18 @@
       "brand": "Northbound",
       "description": "Raw selvedge denim jeans with a straight leg that fades beautifully over time — built to last for years.",
       "material": "100% Cotton Selvedge Denim",
-      "colors": ["Indigo", "Washed Black"],
-      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "colors": [
+        "Indigo",
+        "Washed Black"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
       "stock": 24,
       "highlights": [
         "Premium selvedge denim",
@@ -490,8 +670,18 @@
       "brand": "Northbound",
       "description": "A brushed cotton flannel shirt in a classic check — cosy, rugged, and perfect for layering.",
       "material": "100% Brushed Cotton",
-      "colors": ["Red Check", "Green Check", "Blue Check"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "Red Check",
+        "Green Check",
+        "Blue Check"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 30,
       "highlights": [
         "Brushed cotton flannel",
@@ -513,8 +703,18 @@
       "brand": "Northbound",
       "description": "A lightweight quilted bomber with a water-repellent shell and ribbed trims — modern warmth without the bulk.",
       "material": "Nylon shell, polyester fill",
-      "colors": ["Black", "Olive", "Navy"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "Black",
+        "Olive",
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 16,
       "highlights": [
         "Water-repellent shell",
@@ -537,8 +737,19 @@
       "brand": "Northbound",
       "description": "A moisture-wicking performance polo with four-way stretch — sharp enough for the office, easy enough for the course.",
       "material": "92% Polyester, 8% Elastane",
-      "colors": ["White", "Navy", "Slate", "Burgundy"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "White",
+        "Navy",
+        "Slate",
+        "Burgundy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 44,
       "highlights": [
         "Moisture-wicking fabric",
@@ -559,8 +770,16 @@
       "brand": "Northbound",
       "description": "A slim-tailored wool-blend blazer with structured shoulders and a half-canvas front for a crisp, refined line.",
       "material": "80% Wool, 20% Polyester",
-      "colors": ["Charcoal", "Navy"],
-      "sizes": ["S", "M", "L", "XL"],
+      "colors": [
+        "Charcoal",
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "stock": 11,
       "highlights": [
         "Half-canvas construction",
@@ -581,8 +800,19 @@
       "brand": "Northbound",
       "description": "A soft heavyweight cotton tee with a subtle chest graphic and a relaxed fit that holds its shape wash after wash.",
       "material": "100% Combed Cotton",
-      "colors": ["White", "Black", "Sand", "Olive"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "White",
+        "Black",
+        "Sand",
+        "Olive"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 60,
       "highlights": [
         "Heavyweight combed cotton",
@@ -604,8 +834,19 @@
       "brand": "Northbound",
       "description": "Tapered cargo joggers with cuffed ankles and roomy utility pockets — street-ready comfort with a modern cut.",
       "material": "97% Cotton, 3% Elastane",
-      "colors": ["Khaki", "Black", "Stone"],
-      "sizes": ["28", "30", "32", "34", "36", "38"],
+      "colors": [
+        "Khaki",
+        "Black",
+        "Stone"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
       "stock": 27,
       "highlights": [
         "Tapered cuffed fit",
@@ -628,8 +869,19 @@
       "brand": "Northbound",
       "description": "Handsome Chelsea boots in full-grain leather with elastic side panels and a durable Goodyear-welted sole.",
       "material": "Full-grain Leather",
-      "colors": ["Tan", "Brown", "Black"],
-      "sizes": ["7", "8", "9", "10", "11", "12"],
+      "colors": [
+        "Tan",
+        "Brown",
+        "Black"
+      ],
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
       "stock": 13,
       "highlights": [
         "Full-grain leather upper",
@@ -650,8 +902,18 @@
       "brand": "Northbound",
       "description": "A heavyweight full-zip hoodie in brushed-back fleece with a double-layer hood and kangaroo pockets.",
       "material": "80% Cotton, 20% Polyester",
-      "colors": ["Heather Grey", "Black", "Navy"],
-      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "colors": [
+        "Heather Grey",
+        "Black",
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
       "stock": 38,
       "highlights": [
         "Brushed-back fleece",
@@ -672,7 +934,10 @@
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "Reference-tuned over-ear headphones with 40mm drivers, plush memory-foam earcups, and a detachable cable.",
-      "colors": ["Black", "Silver"],
+      "colors": [
+        "Black",
+        "Silver"
+      ],
       "stock": 22,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -695,7 +960,9 @@
       "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A rugged 4K60 action camera with electronic stabilisation, waterproof housing, and voice control.",
-      "colors": ["Black"],
+      "colors": [
+        "Black"
+      ],
       "stock": 18,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -716,7 +983,10 @@
       "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A hot-swappable mechanical keyboard with tactile switches, per-key RGB, and a machined aluminium frame.",
-      "colors": ["Black", "White"],
+      "colors": [
+        "Black",
+        "White"
+      ],
       "stock": 29,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -739,7 +1009,10 @@
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A slim 15W Qi wireless charging pad with a non-slip surface and case-friendly charging up to 5mm.",
-      "colors": ["Black", "White"],
+      "colors": [
+        "Black",
+        "White"
+      ],
       "stock": 52,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -761,7 +1034,11 @@
       "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "Premium wireless headphones with adaptive active noise cancellation and up to 40 hours of battery life.",
-      "colors": ["Midnight", "Silver", "Sand"],
+      "colors": [
+        "Midnight",
+        "Silver",
+        "Sand"
+      ],
       "stock": 20,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -782,7 +1059,11 @@
       "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A slim fitness band with heart-rate, sleep, and SpO2 tracking, plus a 14-day battery and 5ATM water resistance.",
-      "colors": ["Black", "Coral", "Teal"],
+      "colors": [
+        "Black",
+        "Coral",
+        "Teal"
+      ],
       "stock": 41,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -805,7 +1086,10 @@
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A 20,000mAh power bank with 30W USB-C PD, dual outputs, and a battery-level display to keep everything charged.",
-      "colors": ["Graphite", "White"],
+      "colors": [
+        "Graphite",
+        "White"
+      ],
       "stock": 47,
       "warranty": "18-month limited warranty",
       "highlights": [
@@ -827,7 +1111,10 @@
       "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A room-filling smart speaker with adaptive audio, built-in voice assistant, and multi-room sync.",
-      "colors": ["Charcoal", "Chalk"],
+      "colors": [
+        "Charcoal",
+        "Chalk"
+      ],
       "stock": 25,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -848,7 +1135,9 @@
       "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A sharp 1080p60 webcam with autofocus, dual noise-reducing mics, and an integrated privacy shutter.",
-      "colors": ["Black"],
+      "colors": [
+        "Black"
+      ],
       "stock": 34,
       "warranty": "1-year limited warranty",
       "highlights": [
@@ -871,7 +1160,10 @@
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "An ultra-light wireless gaming mouse with a 26K optical sensor, 70-hour battery, and low-latency wireless.",
-      "colors": ["Black", "White"],
+      "colors": [
+        "Black",
+        "White"
+      ],
       "stock": 31,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -892,7 +1184,10 @@
       "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80",
       "brand": "SonicWave",
       "description": "A belt-drive turntable with a built-in preamp and Bluetooth output — spin vinyl straight to your wireless speakers.",
-      "colors": ["Walnut", "Black"],
+      "colors": [
+        "Walnut",
+        "Black"
+      ],
       "stock": 12,
       "warranty": "2-year limited warranty",
       "highlights": [
@@ -909,6 +1204,40 @@
       "email": "test@test.com",
       "password": "testtest",
       "id": "ei4N8y1G928"
+    }
+  ],
+  "orders": [
+    {
+      "id": "s3jO393qyJE",
+      "email": "test@test.com",
+      "userId": "ei4N8y1G928",
+      "status": "paid",
+      "currency": "usd",
+      "amountTotal": 15700,
+      "count": 2,
+      "items": [
+        {
+          "id": "7",
+          "name": "Crossbody Leather Bag",
+          "price": 98,
+          "quantity": 1
+        },
+        {
+          "id": "8",
+          "name": "Portable Bluetooth Speaker",
+          "price": 59,
+          "quantity": 1
+        }
+      ],
+      "createdAt": "2026-07-14T10:53:07.548Z"
+    }
+  ],
+  "logouts": [
+    {
+      "userId": "ei4N8y1G928",
+      "email": "test@test.com",
+      "at": "2026-07-14T10:57:08.543Z",
+      "id": "_a8ysQyaL6E"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

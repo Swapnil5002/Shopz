@@ -2,7 +2,10 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import ProductFilters from "../../components/ProductFilters/ProductFilters";
+import ProductFilters, {
+  PRICE_OPTIONS,
+  RATING_OPTIONS,
+} from "../../components/ProductFilters/ProductFilters";
 import { CATEGORIES, FEATURES, PRODUCTS } from "../../data/products";
 import { buildSrcSet, getResponsiveImage } from "../../utils/image";
 import "./HomePage.css";
@@ -108,9 +111,12 @@ function HomePage({
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [sort, setSort] = useState("featured");
+  const [price, setPrice] = useState("all");
+  const [rating, setRating] = useState("all");
+  const [onSale, setOnSale] = useState(false);
 
-  const visibleProducts = useMemo(() => {
-    let list = viewAll ? products : products.slice(0, 8);
+  const filteredProducts = useMemo(() => {
+    let list = products;
 
     if (activeCategory !== "all") {
       list = list.filter((product) => product.category === activeCategory);
@@ -120,6 +126,27 @@ function HomePage({
     if (query) {
       list = list.filter((product) =>
         product.name.toLowerCase().includes(query),
+      );
+    }
+
+    const priceOption = PRICE_OPTIONS.find((option) => option.value === price);
+    if (priceOption && priceOption.value !== "all") {
+      list = list.filter(
+        (product) =>
+          product.price >= priceOption.min && product.price < priceOption.max,
+      );
+    }
+
+    const ratingOption = RATING_OPTIONS.find(
+      (option) => option.value === rating,
+    );
+    if (ratingOption && ratingOption.value !== "all") {
+      list = list.filter((product) => product.rating >= ratingOption.min);
+    }
+
+    if (onSale) {
+      list = list.filter(
+        (product) => Boolean(product.originalPrice) || product.badge === "Sale",
       );
     }
 
@@ -133,7 +160,20 @@ function HomePage({
     }
 
     return sorted;
-  }, [products, activeCategory, searchQuery, sort, viewAll]);
+  }, [products, activeCategory, searchQuery, sort, price, rating, onSale]);
+
+  const displayedProducts = viewAll
+    ? filteredProducts
+    : filteredProducts.slice(0, 8);
+
+  const handleResetFilters = () => {
+    setActiveCategory("all");
+    setSearchQuery("");
+    setSort("featured");
+    setPrice("all");
+    setRating("all");
+    setOnSale(false);
+  };
 
   const handleSubscribe = async (event) => {
     event.preventDefault();
@@ -264,13 +304,15 @@ function HomePage({
               Hand-picked bestsellers this week
             </p>
           </div>
-          <a
-            href="#featured"
-            className="home-section__link"
-            onClick={handleViewAll}
-          >
-            {viewAll ? "View less" : "View all"}
-          </a>
+          {filteredProducts.length > 8 && (
+            <a
+              href="#featured"
+              className="home-section__link"
+              onClick={handleViewAll}
+            >
+              {viewAll ? "View less" : "View all"}
+            </a>
+          )}
         </div>
 
         {productsStatus === PRODUCT_STATUS.IDLE && (
@@ -282,12 +324,20 @@ function HomePage({
               onCategoryChange={setActiveCategory}
               sort={sort}
               onSortChange={setSort}
+              price={price}
+              onPriceChange={setPrice}
+              rating={rating}
+              onRatingChange={setRating}
+              onSale={onSale}
+              onOnSaleChange={setOnSale}
+              onReset={handleResetFilters}
+              resultCount={filteredProducts.length}
             />
           </div>
         )}
 
         <FeaturedProducts
-          products={visibleProducts}
+          products={displayedProducts}
           status={productsStatus}
           onAddToCart={onAddToCart}
         />

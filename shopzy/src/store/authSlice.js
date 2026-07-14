@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { loginRequest, registerRequest, updateUserRequest } from '../api/auth'
+import {
+  loginRequest,
+  logoutRequest,
+  registerRequest,
+  updateUserRequest,
+} from '../api/auth'
 
 export const AUTH_STATUS = {
   IDLE: 'idle',
@@ -52,6 +57,13 @@ export const login = createAsyncThunk(
   },
 )
 
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (_, { getState }) => {
+    await logoutRequest(getState().auth.user)
+  },
+)
+
 export const updateProfile = createAsyncThunk(
   'auth/updateProfile',
   async ({ id, changes }, { rejectWithValue }) => {
@@ -73,12 +85,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout(state) {
-      state.user = null
-      state.status = AUTH_STATUS.IDLE
-      state.error = null
-      persistUser(null)
-    },
     clearAuthError(state) {
       state.error = null
     },
@@ -98,6 +104,12 @@ const authSlice = createSlice({
       state.error = null
       persistUser(action.payload)
     }
+    const clearAuth = (state) => {
+      state.user = null
+      state.status = AUTH_STATUS.IDLE
+      state.error = null
+      persistUser(null)
+    }
 
     builder
       .addCase(register.pending, onPending)
@@ -109,8 +121,13 @@ const authSlice = createSlice({
       .addCase(updateProfile.pending, onPending)
       .addCase(updateProfile.fulfilled, onAuthenticated)
       .addCase(updateProfile.rejected, onRejected)
+      // Auth is cleared once the logout request settles (the user is still
+      // needed by the thunk to build the request), and stays cleared even if
+      // the server call fails.
+      .addCase(logout.fulfilled, clearAuth)
+      .addCase(logout.rejected, clearAuth)
   },
 })
 
-export const { logout, clearAuthError } = authSlice.actions
+export const { clearAuthError } = authSlice.actions
 export default authSlice.reducer

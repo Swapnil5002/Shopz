@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  flex: 1 1 260px;
   min-width: 220px;
 }
 
@@ -34,7 +33,9 @@
   font-size: 0.95rem;
   background: var(--color-surface);
   color: var(--color-text-strong);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .search-bar__input:focus {

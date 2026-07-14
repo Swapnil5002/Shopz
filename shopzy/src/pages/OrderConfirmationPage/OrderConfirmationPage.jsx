@@ -54,7 +54,7 @@ function OrderConfirmationPage() {
         </div>
         <div className="confirmation__row">
           <span>Amount paid</span>
-          <strong>${total}</strong>
+          <strong>₹{total}</strong>
         </div>
       </div>
 

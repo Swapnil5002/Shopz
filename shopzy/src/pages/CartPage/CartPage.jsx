@@ -93,7 +93,7 @@ function CartPage() {
                   {item.category && (
                     <span className="cart__item-category">{item.category}</span>
                   )}
-                  <span className="cart__item-price">${item.price}</span>
+                  <span className="cart__item-price">₹{item.price}</span>
 
                   <div className="cart__item-actions">
                     <div className="cart__qty" role="group" aria-label={`Quantity for ${item.name}`}>
@@ -134,7 +134,7 @@ function CartPage() {
                 </div>
 
                 <div className="cart__item-total">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ₹{(item.price * item.quantity).toFixed(2)}
                 </div>
               </li>
             ))}
@@ -145,7 +145,7 @@ function CartPage() {
           <h2 className="cart__summary-title">Order summary</h2>
           <div className="cart__summary-row">
             <span>Subtotal ({count} item{count === 1 ? '' : 's'})</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₹{total.toFixed(2)}</span>
           </div>
           <div className="cart__summary-row">
             <span>Shipping</span>
@@ -153,7 +153,7 @@ function CartPage() {
           </div>
           <div className="cart__summary-row cart__summary-row--total">
             <span>Order total</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₹{total.toFixed(2)}</span>
           </div>
           <button type="button" className="cart__checkout" onClick={handleCheckout}>
             {user ? 'Proceed to checkout' : 'Sign in to checkout'}

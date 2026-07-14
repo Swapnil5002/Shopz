@@ -1,46 +1,74 @@
-import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectCartCount, selectCartItems, selectCartTotal } from '../../store/cartSlice'
-import { CHECKOUT_MODE, createCheckoutSession } from '../../api/checkout'
-import './CheckoutPage.css'
+import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  selectCartCount,
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cartSlice";
+import { CHECKOUT_MODE, createCheckoutSession } from "../../api/checkout";
+import { createOrder } from "../../api/orders";
+import "./CheckoutPage.css";
 
 function CheckoutPage() {
-  const navigate = useNavigate()
-  const items = useSelector(selectCartItems)
-  const count = useSelector(selectCartCount)
-  const total = useSelector(selectCartTotal)
-  const user = useSelector((state) => state.auth.user)
+  const navigate = useNavigate();
+  const items = useSelector(selectCartItems);
+  const count = useSelector(selectCartCount);
+  const total = useSelector(selectCartTotal);
+  const user = useSelector((state) => state.auth.user);
 
-  const [processing, setProcessing] = useState(false)
-  const [error, setError] = useState('')
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState("");
 
   if (items.length === 0) {
-    return <Navigate to="/cart" replace />
+    return <Navigate to="/cart" replace />;
   }
 
   const handlePay = async (event) => {
-    event.preventDefault()
-    setProcessing(true)
-    setError('')
+    event.preventDefault();
+    setProcessing(true);
+    setError("");
+
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") ?? "").trim() || user?.email || "";
 
     try {
-      const session = await createCheckoutSession(items)
-      navigate('/checkout/success', {
+      const session = await createCheckoutSession(items);
+
+      const savedOrder = await createOrder({
+        id: session.id,
+        email,
+        userId: user?.id ?? null,
+        status: session.paymentStatus,
+        currency: session.currency,
+        amountTotal: session.amountTotal,
+        count,
+        items: items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+        createdAt: new Date().toISOString(),
+      });
+
+      navigate("/checkout/success", {
         replace: true,
         state: {
           order: {
-            id: session.id,
-            amountTotal: session.amountTotal,
-            count,
+            id: savedOrder.id,
+            amountTotal: savedOrder.amountTotal,
+            count: savedOrder.count,
           },
         },
-      })
+      });
     } catch (err) {
-      setError(err.message || 'Payment could not be completed. Please try again.')
-      setProcessing(false)
+      setError(
+        err.message || "Payment could not be completed. Please try again.",
+      );
+      setProcessing(false);
     }
-  }
+  };
 
   return (
     <div className="checkout">
@@ -51,7 +79,7 @@ function CheckoutPage() {
         <span className="checkout__brand">Shopzy</span>
       </div>
 
-      {CHECKOUT_MODE === 'mock' && (
+      {CHECKOUT_MODE === "mock" && (
         <p className="checkout__test-banner" role="status">
           Test mode — this is a mock Stripe checkout. No real payment is taken.
           Use any details (e.g. card <strong>4242 4242 4242 4242</strong>).
@@ -73,7 +101,8 @@ function CheckoutPage() {
             <input
               className="checkout__input"
               type="email"
-              defaultValue={user?.email ?? ''}
+              name="email"
+              defaultValue={user?.email ?? ""}
               placeholder="you@example.com"
               autoComplete="email"
             />
@@ -115,25 +144,25 @@ function CheckoutPage() {
             <span className="checkout__label">Name on card</span>
             <input
               className="checkout__input"
-              defaultValue={user?.name ?? ''}
+              defaultValue={user?.name ?? ""}
               placeholder="Full name"
               autoComplete="cc-name"
             />
           </label>
 
           <button type="submit" className="checkout__pay" disabled={processing}>
-            {processing ? 'Processing…' : `Pay $${total.toFixed(2)}`}
+            {processing ? "Processing…" : `Pay ₹${total.toFixed(2)}`}
           </button>
 
           <p className="checkout__secure">
-            <span aria-hidden="true">🔒</span> Payments are securely processed by
-            Stripe.
+            <span aria-hidden="true">🔒</span> Payments are securely processed
+            by Stripe.
           </p>
         </form>
 
         <aside className="checkout__summary">
           <h2 className="checkout__summary-title">
-            Order summary ({count} item{count === 1 ? '' : 's'})
+            Order summary ({count} item{count === 1 ? "" : "s"})
           </h2>
           <ul className="checkout__items">
             {items.map((item) => (
@@ -145,17 +174,19 @@ function CheckoutPage() {
                 />
                 <span className="checkout__item-name">
                   {item.name}
-                  <span className="checkout__item-qty">Qty {item.quantity}</span>
+                  <span className="checkout__item-qty">
+                    Qty {item.quantity}
+                  </span>
                 </span>
                 <span className="checkout__item-price">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ₹{(item.price * item.quantity).toFixed(2)}
                 </span>
               </li>
             ))}
           </ul>
           <div className="checkout__summary-row">
             <span>Subtotal</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₹{total.toFixed(2)}</span>
           </div>
           <div className="checkout__summary-row">
             <span>Shipping</span>
@@ -163,12 +194,12 @@ function CheckoutPage() {
           </div>
           <div className="checkout__summary-row checkout__summary-row--total">
             <span>Total due</span>
-            <span>${total.toFixed(2)}</span>
+            <span>₹{total.toFixed(2)}</span>
           </div>
         </aside>
       </div>
     </div>
-  )
+  );
 }
 
-export default CheckoutPage
+export default CheckoutPage;

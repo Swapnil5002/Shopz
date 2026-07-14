@@ -32,7 +32,7 @@ export const CATEGORIES = [
 ]
 
 export const FEATURES = [
-  { label: 'Free shipping', detail: 'On orders over $50' },
+  { label: 'Free shipping', detail: 'On orders over ₹50' },
   { label: 'Easy returns', detail: '30-day hassle-free' },
   { label: 'Secure checkout', detail: '256-bit encryption' },
 ]

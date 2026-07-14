@@ -271,14 +271,14 @@ function ProductDetailPage() {
               <span className="pdp__price-discount">-{discountPercent}%</span>
             )}
             <span className="pdp__price">
-              <sup className="pdp__price-symbol">$</sup>
+              <sup className="pdp__price-symbol">₹</sup>
               {price}
             </span>
           </div>
           {originalPrice && (
             <div className="pdp__list-price">
               List Price:{' '}
-              <span className="pdp__strike">${originalPrice}</span>
+              <span className="pdp__strike">₹{originalPrice}</span>
             </div>
           )}
 
@@ -347,7 +347,7 @@ function ProductDetailPage() {
 
         <aside className="pdp__buybox">
           <div className="pdp__buybox-price">
-            <sup className="pdp__price-symbol">$</sup>
+            <sup className="pdp__price-symbol">₹</sup>
             {price}
           </div>
 

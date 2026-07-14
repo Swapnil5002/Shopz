@@ -27,7 +27,7 @@ describe('ProductCard', () => {
     renderCard()
 
     expect(screen.getByRole('heading', { name: 'Silk Wrap Dress' })).toBeInTheDocument()
-    expect(screen.getByText('$89')).toBeInTheDocument()
+    expect(screen.getByText('₹89')).toBeInTheDocument()
     expect(screen.getByText('Women')).toBeInTheDocument()
     expect(screen.getByLabelText('Rated 4.8 out of 5')).toBeInTheDocument()
   })
@@ -45,14 +45,14 @@ describe('ProductCard', () => {
     renderCard({ ...baseProduct, badge: 'Sale', originalPrice: 119 })
 
     expect(screen.getByText('Sale')).toBeInTheDocument()
-    expect(screen.getByText('$119')).toBeInTheDocument()
+    expect(screen.getByText('₹119')).toBeInTheDocument()
   })
 
   it('does not render badge or original price when omitted', () => {
     renderCard()
 
     expect(screen.queryByText('Sale')).not.toBeInTheDocument()
-    expect(screen.queryByText('$119')).not.toBeInTheDocument()
+    expect(screen.queryByText('₹119')).not.toBeInTheDocument()
   })
 
   it('calls onAddToCart when add to cart is clicked', async () => {
