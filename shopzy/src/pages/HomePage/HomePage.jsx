@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ProductFilters from "../../components/ProductFilters/ProductFilters";
@@ -20,6 +21,37 @@ export const NEWSLETTER_STATUS = {
 };
 
 const CATEGORY_LABELS = CATEGORIES.map((category) => category.label);
+
+const STATS = [
+  { value: "40+", label: "Products in stock" },
+  { value: "50k+", label: "Happy customers" },
+  { value: "4.8/5", label: "Average rating" },
+  { value: "24/7", label: "Customer support" },
+];
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "The quality blew me away for the price. My order arrived two days early and the packaging was gorgeous.",
+    name: "Ava Thompson",
+    role: "Verified buyer",
+    rating: 5,
+  },
+  {
+    quote:
+      "Shopzy is my go-to for gifts now. Easy checkout, fast shipping, and the returns process is completely painless.",
+    name: "Marcus Lee",
+    role: "Verified buyer",
+    rating: 5,
+  },
+  {
+    quote:
+      "Great range across fashion and tech. The product photos are accurate and customer support actually replies fast.",
+    name: "Priya Sharma",
+    role: "Verified buyer",
+    rating: 4,
+  },
+];
 
 function FeaturedProducts({ products, status, onAddToCart }) {
   if (status === PRODUCT_STATUS.LOADING) {
@@ -146,7 +178,8 @@ function HomePage({
           <h1 className="home-hero__title">Style meets smart shopping</h1>
           <p className="home-hero__text">
             Discover curated fashion for women and men, plus the latest
-            electronics npm run server all in one place.
+            electronics — all in one place, with free shipping and 30-day
+            returns.
           </p>
           <div className="home-hero__actions">
             <a
@@ -176,6 +209,17 @@ function HomePage({
         </ul>
       </section>
 
+      <section className="home-stats" aria-label="Shopzy by the numbers">
+        <div className="home-stats__inner">
+          {STATS.map(({ value, label }) => (
+            <div key={label} className="home-stat">
+              <span className="home-stat__value">{value}</span>
+              <span className="home-stat__label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="categories" className="home-section">
         <div className="home-section__header">
           <h2 className="home-section__title">Shop by category</h2>
@@ -183,11 +227,11 @@ function HomePage({
         </div>
 
         <div className="home-categories">
-          {CATEGORIES.map(({ id, label, href, description, bg, image }) => (
-            <a
+          {CATEGORIES.map(({ id, label, description, bg, image }) => (
+            <Link
               key={id}
               id={id}
-              href={href}
+              to={`/${id}`}
               className="home-category"
               style={{ background: bg }}
             >
@@ -207,7 +251,7 @@ function HomePage({
               <span className="home-category__cta">
                 Shop {label.toLowerCase()} →
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -247,6 +291,38 @@ function HomePage({
           status={productsStatus}
           onAddToCart={onAddToCart}
         />
+      </section>
+
+      <section className="home-section" aria-label="Customer reviews">
+        <div className="home-section__header">
+          <h2 className="home-section__title">Loved by shoppers</h2>
+          <p className="home-section__subtitle">
+            Real reviews from the Shopzy community
+          </p>
+        </div>
+
+        <div className="home-testimonials">
+          {TESTIMONIALS.map(({ quote, name, role, rating }) => (
+            <figure key={name} className="home-testimonial">
+              <div
+                className="home-testimonial__stars"
+                aria-label={`Rated ${rating} out of 5`}
+              >
+                <span aria-hidden="true">
+                  {"★".repeat(rating)}
+                  {"☆".repeat(5 - rating)}
+                </span>
+              </div>
+              <blockquote className="home-testimonial__quote">
+                “{quote}”
+              </blockquote>
+              <figcaption className="home-testimonial__author">
+                <span className="home-testimonial__name">{name}</span>
+                <span className="home-testimonial__role">{role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="home-promo">
