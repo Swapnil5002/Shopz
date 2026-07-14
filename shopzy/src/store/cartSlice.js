@@ -29,14 +29,14 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const { id, name, price, bg, category, quantity } = action.payload
+      const { id, name, price, bg, image, category, quantity } = action.payload
       const qty = Math.max(1, Number(quantity) || 1)
       const existing = state.items.find((item) => item.id === id)
 
       if (existing) {
         existing.quantity += qty
       } else {
-        state.items.push({ id, name, price, bg, category, quantity: qty })
+        state.items.push({ id, name, price, bg, image, category, quantity: qty })
       }
 
       persistCart(state.items)

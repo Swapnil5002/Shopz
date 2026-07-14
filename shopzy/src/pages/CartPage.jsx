@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { buildSrcSet, getResponsiveImage } from '../utils/image'
 import {
   clearCart,
   removeFromCart,
@@ -69,7 +70,21 @@ function CartPage() {
                   className="cart__item-media"
                   style={{ background: item.bg }}
                   aria-label={`View ${item.name}`}
-                />
+                >
+                  {item.image && (
+                    <img
+                      src={getResponsiveImage(item.image, { width: 96 }).src}
+                      srcSet={buildSrcSet(item.image, [96, 192, 288])}
+                      sizes="96px"
+                      width={96}
+                      height={96}
+                      alt={item.name}
+                      className="cart__item-img"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                </Link>
 
                 <div className="cart__item-info">
                   <Link to={`/product/${item.id}`} className="cart__item-name">

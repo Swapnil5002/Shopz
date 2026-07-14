@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard/ProductCard'
 import SearchBar from '../components/SearchBar/SearchBar'
 import ProductFilters from '../components/ProductFilters/ProductFilters'
 import { CATEGORIES, FEATURES, PRODUCTS } from '../data/products'
+import { buildSrcSet, getResponsiveImage } from '../utils/image'
 import './HomePage.css'
 
 export const PRODUCT_STATUS = {
@@ -159,7 +160,7 @@ function HomePage({
         </div>
 
         <div className="home-categories">
-          {CATEGORIES.map(({ id, label, href, description, bg }) => (
+          {CATEGORIES.map(({ id, label, href, description, bg, image }) => (
             <a
               key={id}
               id={id}
@@ -167,6 +168,17 @@ function HomePage({
               className="home-category"
               style={{ background: bg }}
             >
+              {image && (
+                <img
+                  src={getResponsiveImage(image, { width: 600 }).src}
+                  srcSet={buildSrcSet(image, [400, 600, 800])}
+                  sizes="(max-width: 700px) 100vw, 33vw"
+                  alt={label}
+                  className="home-category__image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
               <span className="home-category__label">{label}</span>
               <span className="home-category__desc">{description}</span>
               <span className="home-category__cta">Shop {label.toLowerCase()} →</span>

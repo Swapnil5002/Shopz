@@ -1,14 +1,30 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import { getResponsiveImage } from '../../utils/image'
 import './ProductCard.css'
 
+const CARD_WIDTHS = [200, 300, 400, 600]
+const CARD_SIZES = '(max-width: 480px) 100vw, (max-width: 900px) 45vw, 300px'
+
 function ProductCard({ product, onAddToCart }) {
-  const { id, name, category, price, originalPrice, rating, reviews, badge, bg } = product
+  const { id, name, category, price, originalPrice, rating, reviews, badge, bg, image } = product
+  const responsive = getResponsiveImage(image, { width: 400, widths: CARD_WIDTHS })
 
   return (
     <article className="product-card">
       <Link to={`/product/${id}`} className="product-card__media-link" aria-label={`View ${name}`}>
         <div className="product-card__media" style={{ background: bg }}>
+          {responsive && (
+            <img
+              src={responsive.src}
+              srcSet={responsive.srcSet}
+              sizes={CARD_SIZES}
+              alt={name}
+              className="product-card__image"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
           {badge && <span className="product-card__badge">{badge}</span>}
           <span className="product-card__category">{category}</span>
         </div>

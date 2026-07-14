@@ -67,7 +67,7 @@
   --color-brand-border: rgba(170, 59, 255, 0.5);
   --color-focus-ring: rgba(170, 59, 255, 0.35);
 
-  --color-star: var(--amber-500);
+  --color-star: var(--color-brand);
 
   --color-danger: var(--red-600);
   --color-danger-bg: var(--red-50);

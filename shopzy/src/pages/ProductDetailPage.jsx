@@ -3,7 +3,11 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { fetchProductById } from '../api/products'
 import { addToCart } from '../store/cartSlice'
+import { buildSrcSet, getResponsiveImage } from '../utils/image'
 import './ProductDetailPage.css'
+
+const PDP_MAIN_WIDTHS = [400, 600, 800, 1000]
+const PDP_MAIN_SIZES = '(max-width: 900px) 100vw, 480px'
 
 const STATUS = {
   LOADING: 'loading',
@@ -157,6 +161,7 @@ function ProductDetailPage() {
     reviews,
     badge,
     bg,
+    image,
     brand,
     description,
     material,
@@ -178,12 +183,12 @@ function ProductDetailPage() {
   const categoryPath = `/${category.toLowerCase()}`
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id, name, price, bg, category, quantity }))
+    dispatch(addToCart({ id, name, price, bg, image, category, quantity }))
     setJustAdded(true)
   }
 
   const handleBuyNow = () => {
-    dispatch(addToCart({ id, name, price, bg, category, quantity }))
+    dispatch(addToCart({ id, name, price, bg, image, category, quantity }))
     navigate('/cart')
   }
 
@@ -200,24 +205,49 @@ function ProductDetailPage() {
       <div className="pdp__layout">
         <div className="pdp__gallery">
           <div className="pdp__thumbs" role="group" aria-label="Product images">
-            {gallery.map((image, index) => (
+            {gallery.map((swatch, index) => (
               <button
-                key={image}
+                key={swatch}
                 type="button"
                 className={`pdp__thumb${
                   activeImage === index ? ' pdp__thumb--active' : ''
                 }`}
-                style={{ background: image }}
+                style={{ background: swatch }}
                 aria-label={`View image ${index + 1}`}
                 aria-pressed={activeImage === index}
                 onMouseEnter={() => setActiveImage(index)}
                 onClick={() => setActiveImage(index)}
-              />
+              >
+                {image && (
+                  <img
+                    src={getResponsiveImage(image, { width: 96 }).src}
+                    srcSet={buildSrcSet(image, [48, 96, 144])}
+                    sizes="48px"
+                    width={48}
+                    height={48}
+                    alt=""
+                    className="pdp__thumb-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </button>
             ))}
           </div>
           <div className="pdp__main-image" style={{ background: gallery[activeImage] }}>
+            {image && (
+              <img
+                src={getResponsiveImage(image, { width: 800 }).src}
+                srcSet={buildSrcSet(image, PDP_MAIN_WIDTHS)}
+                sizes={PDP_MAIN_SIZES}
+                alt={name}
+                className="pdp__main-img"
+                fetchPriority="high"
+                decoding="async"
+              />
+            )}
             {badge && <span className="pdp__badge">{badge}</span>}
-            <span className="pdp__image-note">{name}</span>
+            {!image && <span className="pdp__image-note">{name}</span>}
           </div>
         </div>
 
