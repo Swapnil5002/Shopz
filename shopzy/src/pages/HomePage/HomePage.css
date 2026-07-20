@@ -60,7 +60,10 @@
   font-weight: 600;
   text-decoration: none;
   border-radius: 10px;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .home-hero__btn--primary {
@@ -178,7 +181,9 @@
   border-radius: 14px;
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .home-category:hover {
@@ -196,10 +201,14 @@
 }
 
 .home-category::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.65) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
 }
 
 .home-category:hover .home-category__image {
@@ -394,7 +403,7 @@
 .home-promo__form {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 50px;
   max-width: 480px;
 }
 

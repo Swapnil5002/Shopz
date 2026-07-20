@@ -1203,7 +1203,35 @@
       "name": "test",
       "email": "test@test.com",
       "password": "testtest",
-      "id": "ei4N8y1G928"
+      "id": "ei4N8y1G928",
+      "addresses": [
+        {
+          "id": "addr_home_demo",
+          "label": "Home",
+          "fullName": "Test User",
+          "phone": "9876543210",
+          "line1": "12 MG Road",
+          "line2": "Near City Mall",
+          "city": "Pune",
+          "state": "MH",
+          "postalCode": "411001",
+          "country": "India",
+          "isDefault": true
+        },
+        {
+          "id": "addr_work_demo",
+          "label": "Work",
+          "fullName": "Test User",
+          "phone": "9876543210",
+          "line1": "Floor 4, Tech Park",
+          "line2": "Hinjewadi Phase 1",
+          "city": "Pune",
+          "state": "MH",
+          "postalCode": "411057",
+          "country": "India",
+          "isDefault": false
+        }
+      ]
     }
   ],
   "orders": [

@@ -26,7 +26,7 @@ export async function registerRequest({ name, email, password }) {
   const response = await fetch(USERS_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({ name, email, password, addresses: [] }),
   });
   if (!response.ok) {
     throw new Error("Registration failed. Please try again.");

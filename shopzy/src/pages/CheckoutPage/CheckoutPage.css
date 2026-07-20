@@ -46,6 +46,217 @@
   align-items: start;
 }
 
+.checkout__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.checkout__shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.checkout__shipping-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout__manage-link {
+  font-size: 0.85rem;
+  font-weight: var(--fw-semibold);
+  color: var(--color-brand);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.checkout__manage-link:hover {
+  text-decoration: underline;
+}
+
+.checkout__empty-address {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--color-brand-soft);
+  border: 1px solid var(--color-brand-border);
+  color: var(--color-text-subtle);
+  font-size: 0.9rem;
+}
+
+.checkout__address-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.checkout__address-option {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border-muted);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.checkout__address-option:hover {
+  border-color: var(--color-border-strong);
+}
+
+.checkout__address-option--selected {
+  border-color: var(--color-brand-border);
+  background: var(--color-brand-soft);
+}
+
+.checkout__address-option input {
+  margin-top: 0.2rem;
+  accent-color: var(--color-brand);
+}
+
+.checkout__address-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.checkout__address-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-text-strong);
+}
+
+.checkout__default-badge {
+  font-size: 0.68rem;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+}
+
+.checkout__address-line {
+  font-size: 0.88rem;
+  color: var(--color-text-subtle);
+  line-height: 1.4;
+}
+
+.checkout__add-address {
+  align-self: flex-start;
+  padding: 0.55rem 0.9rem;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--color-brand);
+  font-size: 0.9rem;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.checkout__add-address:hover {
+  background: var(--color-brand-soft);
+}
+
+.checkout__address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border-muted);
+  border-radius: 12px;
+}
+
+.checkout__subtitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-strong);
+}
+
+.checkout__field-row--3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.checkout__check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+}
+
+.checkout__address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.checkout__save-address,
+.checkout__cancel-address {
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.checkout__save-address {
+  border: none;
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+}
+
+.checkout__save-address:hover:not(:disabled) {
+  background: var(--color-brand-strong);
+}
+
+.checkout__save-address:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.checkout__cancel-address {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text-subtle);
+}
+
+.checkout__ship-to {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0.65rem 0 0.25rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-border-muted);
+  font-size: 0.85rem;
+  color: var(--color-text-subtle);
+}
+
+.checkout__ship-to-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.checkout__ship-to strong {
+  color: var(--color-text-strong);
+}
+
 /* Payment form */
 .checkout__form {
   display: flex;
@@ -294,5 +505,14 @@
   .checkout__summary {
     position: static;
     order: -1;
+  }
+
+  .checkout__field-row--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout__shipping-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
