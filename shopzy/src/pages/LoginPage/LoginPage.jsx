@@ -1,38 +1,38 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { AUTH_STATUS, clearAuthError, login } from '../../store/authSlice'
-import '../AuthPages.css'
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AUTH_STATUS, clearAuthError, login } from "../../store/authSlice";
+import "../AuthPages.css";
 
 function LoginPage() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const status = useSelector((state) => state.auth.status)
-  const error = useSelector((state) => state.auth.error)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const status = useSelector((state) => state.auth.status);
+  const error = useSelector((state) => state.auth.error);
 
-  const redirectTo = location.state?.from ?? '/profile'
+  const redirectTo = location.state?.from ?? "/profile";
 
-  const [form, setForm] = useState({ email: '', password: '' })
+  const [form, setForm] = useState({ email: "", password: "" });
 
   useEffect(() => {
-    dispatch(clearAuthError())
-  }, [dispatch])
+    dispatch(clearAuthError());
+  }, [dispatch]);
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const result = await dispatch(login(form))
+    event.preventDefault();
+    const result = await dispatch(login(form));
     if (login.fulfilled.match(result)) {
-      navigate(redirectTo, { replace: true })
+      navigate(redirectTo, { replace: true });
     }
-  }
+  };
 
-  const isSubmitting = status === AUTH_STATUS.LOADING
+  const isSubmitting = status === AUTH_STATUS.LOADING;
 
   return (
     <div className="auth">
@@ -79,20 +79,24 @@ function LoginPage() {
             />
           </div>
 
-          <button type="submit" className="auth__submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Logging in…' : 'Log in'}
+          <button
+            type="submit"
+            className="auth__submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Logging in…" : "Log in"}
           </button>
         </form>
 
         <p className="auth__footer">
-          Don&apos;t have an account?{' '}
+          Don&apos;t have an account?{" "}
           <Link to="/register" className="auth__link">
             Create one
           </Link>
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CartPage from "./pages/CartPage/CartPage";
+import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
 import { useProducts } from "./hooks/useProducts";
@@ -42,6 +43,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="product/:id" element={<ProductDetailPage />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="wishlist" element={<WishlistPage />} />
         <Route
           path="checkout"
           element={

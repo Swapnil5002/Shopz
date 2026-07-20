@@ -5,6 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import CategoryPage from "./CategoryPage";
 import productsReducer from "../../store/productsSlice";
+import wishlistReducer from "../../store/wishlistSlice";
 import { fetchProducts } from "../../api/products";
 
 vi.mock("../../api/products", () => ({
@@ -12,7 +13,9 @@ vi.mock("../../api/products", () => ({
 }));
 
 function renderCategoryPage(category = "women") {
-  const store = configureStore({ reducer: { products: productsReducer } });
+  const store = configureStore({
+    reducer: { products: productsReducer, wishlist: wishlistReducer },
+  })
   render(
     <Provider store={store}>
       <MemoryRouter initialEntries={[`/${category}`]}>

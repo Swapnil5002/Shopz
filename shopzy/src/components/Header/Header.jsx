@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store/authSlice'
 import { selectCartCount } from '../../store/cartSlice'
+import { selectWishlistCount } from '../../store/wishlistSlice'
 import './Header.css'
 
 const NAV_ITEMS = [
@@ -17,6 +18,7 @@ function Header() {
   const navigate = useNavigate()
   const user = useSelector((state) => state.auth.user)
   const cartCount = useSelector(selectCartCount)
+  const wishlistCount = useSelector(selectWishlistCount)
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -89,6 +91,37 @@ function Header() {
         </ul>
 
         <ul className="header__nav-list header__nav-list--auth">
+          <li>
+            <Link
+              to="/wishlist"
+              className="header__wishlist"
+              onClick={closeMenu}
+              aria-label={`Wishlist, ${wishlistCount} item${wishlistCount === 1 ? '' : 's'}`}
+            >
+              <svg
+                className="header__wishlist-icon"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M12 21s-6.5-4.35-9.2-8.2C1.1 10.5 1.5 7.2 4 5.5 6.1 4.1 8.7 4.6 10.2 6.3L12 8.3l1.8-2C15.3 4.6 17.9 4.1 20 5.5c2.5 1.7 2.9 5 1.2 7.3C18.5 16.65 12 21 12 21Z"
+                  fill={wishlistCount > 0 ? 'currentColor' : 'none'}
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="header__wishlist-label">Wishlist</span>
+              {wishlistCount > 0 && (
+                <span className="header__wishlist-count" aria-hidden="true">
+                  {wishlistCount > 99 ? '99+' : wishlistCount}
+                </span>
+              )}
+            </Link>
+          </li>
           <li>
             <Link
               to="/cart"

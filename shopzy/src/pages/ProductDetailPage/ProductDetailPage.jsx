@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductById } from '../../api/products'
 import { addToCart } from '../../store/cartSlice'
+import { selectIsWishlisted, toggleWishlist } from '../../store/wishlistSlice'
 import { buildSrcSet, getResponsiveImage } from '../../utils/image'
 import './ProductDetailPage.css'
 
@@ -73,6 +74,7 @@ function ProductDetailPage() {
   const { id } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isWishlisted = useSelector(selectIsWishlisted(id))
   const [product, setProduct] = useState(null)
   const [status, setStatus] = useState(STATUS.LOADING)
   const [quantity, setQuantity] = useState(1)
@@ -190,6 +192,10 @@ function ProductDetailPage() {
   const handleBuyNow = () => {
     dispatch(addToCart({ id, name, price, bg, image, category, quantity }))
     navigate('/cart')
+  }
+
+  const handleToggleWishlist = () => {
+    dispatch(toggleWishlist(product))
   }
 
   return (
@@ -393,6 +399,14 @@ function ProductDetailPage() {
             onClick={handleBuyNow}
           >
             Buy Now
+          </button>
+          <button
+            type="button"
+            className={`pdp__wish-btn${isWishlisted ? ' pdp__wish-btn--active' : ''}`}
+            onClick={handleToggleWishlist}
+            aria-pressed={isWishlisted}
+          >
+            {isWishlisted ? '♥ Saved to Wishlist' : '♡ Add to Wishlist'}
           </button>
 
           {justAdded && (

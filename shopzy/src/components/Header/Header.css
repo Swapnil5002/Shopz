@@ -219,6 +219,56 @@
   border-radius: 999px;
 }
 
+.header__wishlist {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  color: var(--text-h);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.header__wishlist:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.header__wishlist:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.header__wishlist-icon {
+  flex-shrink: 0;
+}
+
+.header__wishlist-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.header__wishlist-count {
+  position: absolute;
+  top: -4px;
+  left: 14px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-on-brand);
+  background: var(--accent);
+  border-radius: 999px;
+}
+
 @media (min-width: 769px) {
   .header {
     display: flex;

@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
 import { describe, expect, it, vi } from 'vitest'
 import HomePage, { PRODUCT_STATUS } from './HomePage'
+import wishlistReducer from '../../store/wishlistSlice'
 
 const sampleProduct = {
   id: 99,
@@ -15,10 +18,13 @@ const sampleProduct = {
 }
 
 function renderHome(props = {}) {
+  const store = configureStore({ reducer: { wishlist: wishlistReducer } })
   return render(
-    <MemoryRouter>
-      <HomePage {...props} />
-    </MemoryRouter>,
+    <Provider store={store}>
+      <MemoryRouter>
+        <HomePage {...props} />
+      </MemoryRouter>
+    </Provider>,
   )
 }
 

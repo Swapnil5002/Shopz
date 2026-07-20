@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
 import { describe, expect, it, vi } from 'vitest'
 import ProductCard from './ProductCard'
+import wishlistReducer from '../../store/wishlistSlice'
 
 const baseProduct = {
   id: 1,
@@ -15,10 +18,13 @@ const baseProduct = {
 }
 
 function renderCard(product = baseProduct, props = {}) {
+  const store = configureStore({ reducer: { wishlist: wishlistReducer } })
   return render(
-    <MemoryRouter>
-      <ProductCard product={product} {...props} />
-    </MemoryRouter>,
+    <Provider store={store}>
+      <MemoryRouter>
+        <ProductCard product={product} {...props} />
+      </MemoryRouter>
+    </Provider>,
   )
 }
 
@@ -64,5 +70,17 @@ describe('ProductCard', () => {
 
     expect(onAddToCart).toHaveBeenCalledOnce()
     expect(onAddToCart).toHaveBeenCalledWith(baseProduct)
+  })
+
+  it('toggles wishlist when the heart is clicked', async () => {
+    const user = userEvent.setup()
+    renderCard()
+
+    const wishBtn = screen.getByRole('button', { name: 'Add Silk Wrap Dress to wishlist' })
+    await user.click(wishBtn)
+
+    expect(
+      screen.getByRole('button', { name: 'Remove Silk Wrap Dress from wishlist' }),
+    ).toHaveAttribute('aria-pressed', 'true')
   })
 })

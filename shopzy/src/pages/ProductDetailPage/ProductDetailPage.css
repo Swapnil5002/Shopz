@@ -373,6 +373,31 @@
   cursor: not-allowed;
 }
 
+.pdp__wish-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--commerce-border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--commerce-ink);
+  font-size: 0.9rem;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+}
+
+.pdp__wish-btn:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.pdp__wish-btn--active {
+  border-color: var(--color-brand-border);
+  background: var(--color-brand-soft);
+  color: var(--color-brand);
+}
+
 .pdp__added {
   margin: 0.25rem 0 0;
   padding: 0.5rem 0.65rem;
