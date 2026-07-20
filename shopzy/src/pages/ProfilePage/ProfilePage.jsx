@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   AUTH_STATUS,
@@ -260,6 +260,9 @@ function ProfilePage() {
             >
               Edit profile
             </button>
+            <Link to="/orders" className="profile__btn">
+              Order history
+            </Link>
             <button type="button" className="profile__btn profile__btn--danger" onClick={handleLogout}>
               Log out
             </button>

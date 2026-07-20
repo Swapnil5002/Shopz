@@ -116,6 +116,9 @@
   font-weight: var(--fw-semibold);
   cursor: pointer;
   transition: all 0.15s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .profile__btn:hover:not(:disabled) {

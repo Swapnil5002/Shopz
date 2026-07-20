@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
+import OrderHistoryPage from "./pages/OrderHistoryPage/OrderHistoryPage";
 import { useProducts } from "./hooks/useProducts";
 import { addToCart } from "./store/cartSlice";
 import "./App.css";
@@ -53,12 +54,24 @@ function App() {
           }
         />
         <Route
-          path="checkout/success"
+          path="orders"
+          element={
+            <RequireAuth>
+              <OrderHistoryPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="orders/:orderId"
           element={
             <RequireAuth>
               <OrderConfirmationPage />
             </RequireAuth>
           }
+        />
+        <Route
+          path="checkout/success"
+          element={<Navigate to="/orders" replace />}
         />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />

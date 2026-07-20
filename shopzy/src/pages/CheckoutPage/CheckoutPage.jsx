@@ -161,16 +161,7 @@ function CheckoutPage() {
         createdAt: new Date().toISOString(),
       });
 
-      navigate("/checkout/success", {
-        replace: true,
-        state: {
-          order: {
-            id: savedOrder.id,
-            amountTotal: savedOrder.amountTotal,
-            count: savedOrder.count,
-          },
-        },
-      });
+      navigate(`/orders/${savedOrder.id}`, { replace: true });
     } catch (err) {
       setError(
         err.message || "Payment could not be completed. Please try again.",

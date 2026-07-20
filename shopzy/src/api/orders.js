@@ -20,3 +20,14 @@ export async function fetchOrders(email) {
   }
   return response.json()
 }
+
+export async function fetchOrderById(id) {
+  const response = await fetch(`${ORDERS_URL}/${encodeURIComponent(id)}`)
+  if (response.status === 404) {
+    return null
+  }
+  if (!response.ok) {
+    throw new Error('Could not load this order.')
+  }
+  return response.json()
+}
