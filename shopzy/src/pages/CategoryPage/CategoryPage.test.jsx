@@ -81,13 +81,11 @@ describe("CategoryPage", () => {
     expect(fetchProducts).toHaveBeenCalledWith("Men");
   });
 
-  it("shows the loading state before products resolve", async () => {
+  it("shows skeleton loaders before products resolve", async () => {
     vi.mocked(fetchProducts).mockReturnValue(new Promise(() => {}));
     renderCategoryPage("women");
 
-    expect(
-      await screen.findByText(/loading women products/i),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText("Loading products")).toBeInTheDocument();
   });
 
   it("renders the product grid once products load", async () => {

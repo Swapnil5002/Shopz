@@ -161,7 +161,10 @@ function CheckoutPage() {
         createdAt: new Date().toISOString(),
       });
 
-      navigate(`/orders/${savedOrder.id}`, { replace: true });
+      navigate(`/orders/${savedOrder.id}`, {
+        replace: true,
+        state: { fromCheckout: true },
+      });
     } catch (err) {
       setError(
         err.message || "Payment could not be completed. Please try again.",

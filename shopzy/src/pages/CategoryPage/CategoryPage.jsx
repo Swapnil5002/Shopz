@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard/ProductCard'
+import ProductGridSkeleton from '../../components/ProductCardSkeleton/ProductGridSkeleton'
 import { loadProducts } from '../../store/productsSlice'
 import { addToCart } from '../../store/cartSlice'
 import { PRODUCT_STATUS } from '../HomePage/HomePage'
@@ -46,9 +47,7 @@ function CategoryPage() {
 
       <section className="category__content">
         {status === PRODUCT_STATUS.LOADING && (
-          <p className="category__status" role="status">
-            Loading {label} products…
-          </p>
+          <ProductGridSkeleton count={6} variant="category" />
         )}
 
         {status === PRODUCT_STATUS.ERROR && (

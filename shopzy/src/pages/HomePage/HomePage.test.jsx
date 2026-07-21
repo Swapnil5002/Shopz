@@ -36,10 +36,10 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { name: 'Test Product' })).toBeInTheDocument()
   })
 
-  it('shows loading state', () => {
+  it('shows loading skeletons', () => {
     renderHome({ products: [], productsStatus: PRODUCT_STATUS.LOADING })
 
-    expect(screen.getByText(/loading products/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Loading products')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Add to cart' })).not.toBeInTheDocument()
   })
 

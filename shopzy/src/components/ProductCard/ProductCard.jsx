@@ -8,7 +8,7 @@ import './ProductCard.css'
 const CARD_WIDTHS = [200, 300, 400, 600]
 const CARD_SIZES = '(max-width: 480px) 100vw, (max-width: 900px) 45vw, 300px'
 
-function ProductCard({ product, onAddToCart }) {
+function ProductCard({ product, onAddToCart, onMoveToCart }) {
   const { id, name, category, price, originalPrice, rating, reviews, badge, bg, image } = product
   const responsive = getResponsiveImage(image, { width: 400, widths: CARD_WIDTHS })
   const dispatch = useDispatch()
@@ -80,9 +80,11 @@ function ProductCard({ product, onAddToCart }) {
           <button
             type="button"
             className="product-card__btn"
-            onClick={() => onAddToCart?.(product)}
+            onClick={() =>
+              onMoveToCart ? onMoveToCart(product) : onAddToCart?.(product)
+            }
           >
-            Add to cart
+            {onMoveToCart ? 'Move to cart' : 'Add to cart'}
           </button>
         </div>
       </div>

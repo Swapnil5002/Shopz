@@ -1257,7 +1257,49 @@
           "quantity": 1
         }
       ],
+      "shippingAddress": {
+        "id": "addr_demo_1",
+        "label": "Home",
+        "fullName": "test",
+        "phone": "9876543210",
+        "line1": "12 MG Road",
+        "line2": "Apt 4B",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "postalCode": "400001",
+        "country": "India"
+      },
       "createdAt": "2026-07-14T10:53:07.548Z"
+    },
+    {
+      "id": "dCtKnjJXC5U",
+      "email": "test@test.com",
+      "userId": "ei4N8y1G928",
+      "status": "paid",
+      "currency": "usd",
+      "amountTotal": 7400,
+      "count": 1,
+      "items": [
+        {
+          "id": "2",
+          "name": "Linen Blazer",
+          "price": 74,
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "id": "addr_work_demo",
+        "label": "Work",
+        "fullName": "Test User",
+        "phone": "9876543210",
+        "line1": "Floor 4, Tech aasdasdsdasd",
+        "line2": "Hinjewadi Phase 1",
+        "city": "Pune",
+        "state": "MH",
+        "postalCode": "411057",
+        "country": "India"
+      },
+      "createdAt": "2026-07-21T11:50:00.121Z"
     }
   ],
   "logouts": [
@@ -1266,6 +1308,12 @@
       "email": "test@test.com",
       "at": "2026-07-14T10:57:08.543Z",
       "id": "_a8ysQyaL6E"
+    },
+    {
+      "userId": "ei4N8y1G928",
+      "email": "test@test.com",
+      "at": "2026-07-21T11:50:34.495Z",
+      "id": "5aZz1KhB-4Q"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

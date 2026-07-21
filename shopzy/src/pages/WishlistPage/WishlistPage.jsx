@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard/ProductCard'
-import { addToCart } from '../../store/cartSlice'
+import { moveWishlistItemToCart } from '../../store/wishlistActions'
 import {
   clearWishlist,
   selectWishlistCount,
@@ -53,7 +53,7 @@ function WishlistPage() {
           <ProductCard
             key={product.id}
             product={product}
-            onAddToCart={(item) => dispatch(addToCart(item))}
+            onMoveToCart={(item) => dispatch(moveWishlistItemToCart(item))}
           />
         ))}
       </div>

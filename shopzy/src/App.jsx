@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CartPage from "./pages/CartPage/CartPage";
 import WishlistPage from "./pages/WishlistPage/WishlistPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
-import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
+import OrderDetailPage from "./pages/OrderDetailPage/OrderDetailPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage/OrderHistoryPage";
 import { useProducts } from "./hooks/useProducts";
 import { addToCart } from "./store/cartSlice";
@@ -65,7 +65,7 @@ function App() {
           path="orders/:orderId"
           element={
             <RequireAuth>
-              <OrderConfirmationPage />
+              <OrderDetailPage />
             </RequireAuth>
           }
         />

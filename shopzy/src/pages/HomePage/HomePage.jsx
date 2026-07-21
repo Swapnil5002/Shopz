@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductGridSkeleton from "../../components/ProductCardSkeleton/ProductGridSkeleton";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ProductFilters, {
   PRICE_OPTIONS,
@@ -58,11 +59,7 @@ const TESTIMONIALS = [
 
 function FeaturedProducts({ products, status, onAddToCart }) {
   if (status === PRODUCT_STATUS.LOADING) {
-    return (
-      <p className="home-products__status" role="status">
-        Loading products…
-      </p>
-    );
+    return <ProductGridSkeleton count={8} variant="home" />;
   }
 
   if (status === PRODUCT_STATUS.ERROR) {
