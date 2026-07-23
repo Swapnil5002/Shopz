@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductById } from '../../api/products'
+import { PRODUCT_STATUS } from '../../constants/productStatus'
+import { useProduct } from '../../hooks/useProducts'
 import { addToCart } from '../../store/cartSlice'
 import { selectIsWishlisted, toggleWishlist } from '../../store/wishlistSlice'
 import { buildSrcSet, getResponsiveImage } from '../../utils/image'
@@ -9,13 +10,6 @@ import './ProductDetailPage.css'
 
 const PDP_MAIN_WIDTHS = [400, 600, 800, 1000]
 const PDP_MAIN_SIZES = '(max-width: 900px) 100vw, 480px'
-
-const STATUS = {
-  LOADING: 'loading',
-  IDLE: 'idle',
-  ERROR: 'error',
-  NOT_FOUND: 'not-found',
-}
 
 const CATEGORY_HIGHLIGHTS = {
   Women: [
@@ -75,8 +69,7 @@ function ProductDetailPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isWishlisted = useSelector(selectIsWishlisted(id))
-  const [product, setProduct] = useState(null)
-  const [status, setStatus] = useState(STATUS.LOADING)
+  const { product, status } = useProduct(id)
   const [quantity, setQuantity] = useState(1)
   const [selectedColor, setSelectedColor] = useState('')
   const [selectedSize, setSelectedSize] = useState('')
@@ -84,33 +77,13 @@ function ProductDetailPage() {
   const [justAdded, setJustAdded] = useState(false)
 
   useEffect(() => {
-    let active = true
-
-    setStatus(STATUS.LOADING)
+    if (!product) return
+    setSelectedColor(product.colors?.[0] ?? '')
+    setSelectedSize(product.sizes?.[0] ?? '')
+    setQuantity(1)
+    setActiveImage(0)
     setJustAdded(false)
-    fetchProductById(id)
-      .then((data) => {
-        if (!active) return
-        if (!data) {
-          setStatus(STATUS.NOT_FOUND)
-          return
-        }
-        setProduct(data)
-        setSelectedColor(data.colors?.[0] ?? '')
-        setSelectedSize(data.sizes?.[0] ?? '')
-        setQuantity(1)
-        setActiveImage(0)
-        setStatus(STATUS.IDLE)
-      })
-      .catch(() => {
-        if (!active) return
-        setStatus(STATUS.ERROR)
-      })
-
-    return () => {
-      active = false
-    }
-  }, [id])
+  }, [product])
 
   useEffect(() => {
     if (!justAdded) return undefined
@@ -118,7 +91,7 @@ function ProductDetailPage() {
     return () => clearTimeout(timer)
   }, [justAdded])
 
-  if (status === STATUS.LOADING) {
+  if (status === PRODUCT_STATUS.LOADING) {
     return (
       <div className="pdp">
         <p className="pdp__status" role="status">
@@ -128,7 +101,7 @@ function ProductDetailPage() {
     )
   }
 
-  if (status === STATUS.ERROR) {
+  if (status === PRODUCT_STATUS.ERROR) {
     return (
       <div className="pdp">
         <p className="pdp__status pdp__status--error" role="alert">
@@ -141,7 +114,7 @@ function ProductDetailPage() {
     )
   }
 
-  if (status === STATUS.NOT_FOUND) {
+  if (status === PRODUCT_STATUS.NOT_FOUND || !product) {
     return (
       <div className="pdp">
         <p className="pdp__status" role="status">

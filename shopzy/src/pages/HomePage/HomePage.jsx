@@ -1,22 +1,19 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { addToCart } from "../../store/cartSlice";
 import ProductGridSkeleton from "../../components/ProductCardSkeleton/ProductGridSkeleton";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ProductFilters, {
   PRICE_OPTIONS,
   RATING_OPTIONS,
 } from "../../components/ProductFilters/ProductFilters";
-import { CATEGORIES, FEATURES, PRODUCTS } from "../../data/products";
+import { CATEGORIES, FEATURES } from "../../data/products";
+import { PRODUCT_STATUS } from "../../constants/productStatus";
+import { useProducts } from "../../hooks/useProducts";
 import { buildSrcSet, getResponsiveImage } from "../../utils/image";
 import "./HomePage.css";
-
-export const PRODUCT_STATUS = {
-  IDLE: "idle",
-  LOADING: "loading",
-  ERROR: "error",
-  EMPTY: "empty",
-};
 
 export const NEWSLETTER_STATUS = {
   IDLE: "idle",
@@ -95,11 +92,24 @@ function FeaturedProducts({ products, status, onAddToCart }) {
 }
 
 function HomePage({
-  products = PRODUCTS,
-  productsStatus = PRODUCT_STATUS.IDLE,
+  products: productsOverride,
+  productsStatus: statusOverride,
   onAddToCart,
   onSubscribe,
 }) {
+  const dispatch = useDispatch();
+  const handleAddToCart = onAddToCart ?? ((product) => dispatch(addToCart(product)));
+
+  const hasProductOverride = productsOverride !== undefined;
+  const { products: fetchedProducts, status: fetchedStatus } = useProducts(
+    undefined,
+    { enabled: !hasProductOverride },
+  );
+  const products = productsOverride ?? fetchedProducts;
+  const productsStatus =
+    statusOverride ??
+    (hasProductOverride ? PRODUCT_STATUS.IDLE : fetchedStatus);
+
   const [newsletterStatus, setNewsletterStatus] = useState(
     NEWSLETTER_STATUS.IDLE,
   );
@@ -336,7 +346,7 @@ function HomePage({
         <FeaturedProducts
           products={displayedProducts}
           status={productsStatus}
-          onAddToCart={onAddToCart}
+          onAddToCart={handleAddToCart}
         />
       </section>
 

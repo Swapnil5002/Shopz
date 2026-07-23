@@ -4,8 +4,10 @@ import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { describe, expect, it, vi } from 'vitest'
-import HomePage, { PRODUCT_STATUS } from './HomePage'
+import HomePage from './HomePage'
+import { PRODUCT_STATUS } from '../../constants/productStatus'
 import wishlistReducer from '../../store/wishlistSlice'
+import productsReducer from '../../store/productsSlice'
 
 const sampleProduct = {
   id: 99,
@@ -18,7 +20,9 @@ const sampleProduct = {
 }
 
 function renderHome(props = {}) {
-  const store = configureStore({ reducer: { wishlist: wishlistReducer } })
+  const store = configureStore({
+    reducer: { wishlist: wishlistReducer, products: productsReducer },
+  })
   return render(
     <Provider store={store}>
       <MemoryRouter>

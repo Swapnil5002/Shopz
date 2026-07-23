@@ -1,11 +1,10 @@
-import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ProductCard from '../../components/ProductCard/ProductCard'
 import ProductGridSkeleton from '../../components/ProductCardSkeleton/ProductGridSkeleton'
-import { loadProducts } from '../../store/productsSlice'
+import { PRODUCT_STATUS } from '../../constants/productStatus'
+import { useProducts } from '../../hooks/useProducts'
 import { addToCart } from '../../store/cartSlice'
-import { PRODUCT_STATUS } from '../HomePage/HomePage'
 import './CategoryPage.css'
 
 const CATEGORY_META = {
@@ -25,12 +24,7 @@ function CategoryPage() {
   const label = meta?.label ?? titleCase(key)
 
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.products.items)
-  const status = useSelector((state) => state.products.status)
-
-  useEffect(() => {
-    dispatch(loadProducts(label))
-  }, [dispatch, label])
+  const { products, status } = useProducts(label)
 
   return (
     <div className="category">

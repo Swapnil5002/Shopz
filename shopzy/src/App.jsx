@@ -1,91 +1,86 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import Layout from "./Layout";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 import HomePage from "./pages/HomePage/HomePage";
-import CategoryPage from "./pages/CategoryPage/CategoryPage";
-import ProductDetailPage from "./pages/ProductDetailPage/ProductDetailPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import CartPage from "./pages/CartPage/CartPage";
-import WishlistPage from "./pages/WishlistPage/WishlistPage";
-import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
-import OrderDetailPage from "./pages/OrderDetailPage/OrderDetailPage";
-import OrderHistoryPage from "./pages/OrderHistoryPage/OrderHistoryPage";
-import { useProducts } from "./hooks/useProducts";
-import { addToCart } from "./store/cartSlice";
 import "./App.css";
 
-function Home() {
-  const { products, status } = useProducts();
-  const dispatch = useDispatch();
+const CategoryPage = lazy(() => import("./pages/CategoryPage/CategoryPage"));
+const ProductDetailPage = lazy(
+  () => import("./pages/ProductDetailPage/ProductDetailPage"),
+);
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
+const CartPage = lazy(() => import("./pages/CartPage/CartPage"));
+const WishlistPage = lazy(() => import("./pages/WishlistPage/WishlistPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage/CheckoutPage"));
+const OrderDetailPage = lazy(
+  () => import("./pages/OrderDetailPage/OrderDetailPage"),
+);
+const OrderHistoryPage = lazy(
+  () => import("./pages/OrderHistoryPage/OrderHistoryPage"),
+);
 
+function PageFallback() {
   return (
-    <HomePage
-      products={products}
-      productsStatus={status}
-      onAddToCart={(product) => dispatch(addToCart(product))}
-    />
+    <p className="page-fallback" role="status">
+      Loading page…
+    </p>
   );
-}
-
-function RequireAuth({ children }) {
-  const user = useSelector((state) => state.auth.user);
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  return children;
 }
 
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="product/:id" element={<ProductDetailPage />} />
-        <Route path="cart" element={<CartPage />} />
-        <Route path="wishlist" element={<WishlistPage />} />
-        <Route
-          path="checkout"
-          element={
-            <RequireAuth>
-              <CheckoutPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="orders"
-          element={
-            <RequireAuth>
-              <OrderHistoryPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="orders/:orderId"
-          element={
-            <RequireAuth>
-              <OrderDetailPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="checkout/success"
-          element={<Navigate to="/orders" replace />}
-        />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route
-          path="profile"
-          element={
-            <RequireAuth>
-              <ProfilePage />
-            </RequireAuth>
-          }
-        />
-        <Route path=":category" element={<CategoryPage />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<PageFallback />}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="product/:id" element={<ProductDetailPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="wishlist" element={<WishlistPage />} />
+          <Route
+            path="checkout"
+            element={
+              <RequireAuth>
+                <CheckoutPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="orders"
+            element={
+              <RequireAuth>
+                <OrderHistoryPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="orders/:orderId"
+            element={
+              <RequireAuth>
+                <OrderDetailPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="checkout/success"
+            element={<Navigate to="/orders" replace />}
+          />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route
+            path="profile"
+            element={
+              <RequireAuth>
+                <ProfilePage />
+              </RequireAuth>
+            }
+          />
+          <Route path=":category" element={<CategoryPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
